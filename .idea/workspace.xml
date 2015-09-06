@@ -40,7 +40,7 @@
         <entry file="file://$PROJECT_DIR$/generator.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.85804415">
-              <caret line="63" column="0" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+              <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -310,7 +310,13 @@
       <option name="project" value="LOCAL" />
       <updated>1441559631379</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="List class: delete_person() added">
+      <created>1441561328868</created>
+      <option name="number" value="00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1441561328868</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -347,7 +353,8 @@
     <MESSAGE value="in List class: init and load_list added" />
     <MESSAGE value="List class: update docstring" />
     <MESSAGE value="List class: add_new_person() added" />
-    <option name="LAST_COMMIT_MESSAGE" value="List class: add_new_person() added" />
+    <MESSAGE value="List class: delete_person() added" />
+    <option name="LAST_COMMIT_MESSAGE" value="List class: delete_person() added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -367,7 +374,7 @@
     <entry file="file://$PROJECT_DIR$/generator.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.85804415">
-          <caret line="63" column="0" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+          <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
           <folding />
         </state>
       </provider>

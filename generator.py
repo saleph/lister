@@ -25,7 +25,7 @@ class List(object):
 
     def load_list(self):
         """Loads data from 'list.json' and place it into 'self.list'."""
-        with open("list.json") as file:
+        with open("list.json", 'r') as file:
             self.list = json.loads(file.read())
 
     def add_new_person(self, name, lection, psalm, believers_pray):
@@ -61,3 +61,10 @@ class List(object):
                 return True
 
         return False
+
+    def json_file_update(self):
+        """Override file list.json with new self.list."""
+        with open("list.json", 'w') as file:
+            file.write(json.dumps(self.list))
+
+        return True
