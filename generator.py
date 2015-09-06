@@ -70,3 +70,7 @@ class List(object):
     def sort_by_speeches(self):
         """Sorts self.list by number of speeches."""
         self.list.sort(key=lambda person: person[Attribute.speech_number])
+
+    def create_html_readers_list(self):
+        """Creates html file with list of readers"""
+        self.sort_by_speeches()

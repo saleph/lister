@@ -27,8 +27,8 @@
       <file leaf-file-name="generator.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/generator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.85804415">
-              <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.8817035">
+              <caret line="76" column="0" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -111,7 +111,7 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="1021" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
   </component>
-  <component name="RunManager" selected="Python.tests">
+  <component name="RunManager" selected="Python.generator">
     <configuration default="false" name="tests" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -125,6 +125,23 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="lister" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="generator" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="lister" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/generator.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -251,12 +268,14 @@
       <option name="USE_KEYWORD" value="false" />
       <method />
     </configuration>
-    <list size="1">
+    <list size="2">
       <item index="0" class="java.lang.String" itemvalue="Python.tests" />
+      <item index="1" class="java.lang.String" itemvalue="Python.generator" />
     </list>
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Python.tests" />
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="Python.generator" />
+        <item index="1" class="java.lang.String" itemvalue="Python.tests" />
       </list>
     </recent_temporary>
   </component>
@@ -316,7 +335,13 @@
       <option name="project" value="LOCAL" />
       <updated>1441563229167</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="class List: sort_by_speeches() added">
+      <created>1441567697433</created>
+      <option name="number" value="00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1441567697433</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -356,7 +381,8 @@
     <MESSAGE value="List class: delete_person() added" />
     <MESSAGE value="List class: json_file_update() added" />
     <MESSAGE value="fields of List.list changed: relation is bool, added speech_number" />
-    <option name="LAST_COMMIT_MESSAGE" value="fields of List.list changed: relation is bool, added speech_number" />
+    <MESSAGE value="class List: sort_by_speeches() added" />
+    <option name="LAST_COMMIT_MESSAGE" value="class List: sort_by_speeches() added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -373,8 +399,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/generator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.85804415">
-          <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.8817035">
+          <caret line="76" column="0" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
           <folding />
         </state>
       </provider>
