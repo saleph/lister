@@ -43,7 +43,21 @@ class List(object):
                 new_id = 0
 
             self.list.append([new_id, name, lection, psalm, believers_pray])
-            self.file_list_update()
+            self.json_file_update()
             return True
         else:
             return False
+
+    def delete_person(self, name):
+        """
+        Removes person from the list.
+        Handling situation when exist more than one the same names is unnecessary -
+        it doesn't have an influence for second person.
+        """
+        for i in range(len(self.list)):
+            if name in self.list[i]:
+                del self.list[i]
+                self.json_file_update()
+                return True
+
+        return False
