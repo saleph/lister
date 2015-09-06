@@ -1,5 +1,8 @@
 # Some my files to tests
 tests.py
+*.json
+*.html
+*.css
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

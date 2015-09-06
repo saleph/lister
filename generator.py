@@ -2,9 +2,7 @@ import json
 
 
 class Attribute(object):
-    """
-    Stores an indexes of an attribute used in lists of readers.
-    """
+    """Stores an indexes of an attribute used in lists of readers."""
     person_id = 0
     name = 1
     lection = 2
