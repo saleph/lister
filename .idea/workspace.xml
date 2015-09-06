@@ -39,7 +39,7 @@
       <file leaf-file-name="generator.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/generator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.85804415">
+            <state vertical-scroll-proportion="1.4258676">
               <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
               <folding />
             </state>
@@ -316,7 +316,13 @@
       <option name="project" value="LOCAL" />
       <updated>1441561328868</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="List class: json_file_update() added">
+      <created>1441561556661</created>
+      <option name="number" value="00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1441561556661</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -354,7 +360,8 @@
     <MESSAGE value="List class: update docstring" />
     <MESSAGE value="List class: add_new_person() added" />
     <MESSAGE value="List class: delete_person() added" />
-    <option name="LAST_COMMIT_MESSAGE" value="List class: delete_person() added" />
+    <MESSAGE value="List class: json_file_update() added" />
+    <option name="LAST_COMMIT_MESSAGE" value="List class: json_file_update() added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -373,7 +380,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/generator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.85804415">
+        <state vertical-scroll-proportion="1.4258676">
           <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
           <folding />
         </state>

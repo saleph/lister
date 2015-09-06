@@ -10,14 +10,14 @@ class Attribute(object):
     lection = 2
     psalm = 3
     believers_pray = 4
+    speech_number = 5
 
 
 class List(object):
     """
     List of available people and their lection preferences.
-    Each person has 3 fields describing state of relation towards a lection:
-    e.g. value of 'psalm' == -1 mean the person doesn't want to be appointed
-    to this function. value >= 0 describing readiness to be appointed
+    Each person has 3 fields describing state of relation towards a lection and speech_number
+    used to sorting before new reading list generation
     """
     def __init__(self):
         self.list = []
@@ -31,9 +31,9 @@ class List(object):
     def add_new_person(self, name, lection, psalm, believers_pray):
         """Add new person at the end of self.list and update 'list.json'."""
         name_validity = isinstance(name, str)
-        lection_validity = isinstance(lection, int)
-        psalm_validity = isinstance(psalm, int)
-        believers_pray_validity = isinstance(believers_pray, int)
+        lection_validity = isinstance(lection, bool)
+        psalm_validity = isinstance(psalm, bool)
+        believers_pray_validity = isinstance(believers_pray, bool)
 
         if name_validity and lection_validity and psalm_validity and believers_pray_validity:
             # get last id from list (if exist) and increment
@@ -42,7 +42,7 @@ class List(object):
             else:
                 new_id = 0
 
-            self.list.append([new_id, name, lection, psalm, believers_pray])
+            self.list.append([new_id, name, lection, psalm, believers_pray, 0])
             self.json_file_update()
             return True
         else:
