@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="41d89a24-a5f1-40b9-89ea-203a1f713449" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/generator.py" afterPath="$PROJECT_DIR$/generator.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/tomasz.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/tomasz.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="lister.iws" />
@@ -27,8 +28,8 @@
       <file leaf-file-name="generator.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/generator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8817035">
-              <caret line="76" column="0" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.85804415">
+              <caret line="90" column="30" selection-start-line="90" selection-start-column="30" selection-end-line="90" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -341,7 +342,13 @@
       <option name="project" value="LOCAL" />
       <updated>1441567697433</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="class List: create_html_readers_list() - initialized">
+      <created>1441570177710</created>
+      <option name="number" value="00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1441570177710</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -382,7 +389,8 @@
     <MESSAGE value="List class: json_file_update() added" />
     <MESSAGE value="fields of List.list changed: relation is bool, added speech_number" />
     <MESSAGE value="class List: sort_by_speeches() added" />
-    <option name="LAST_COMMIT_MESSAGE" value="class List: sort_by_speeches() added" />
+    <MESSAGE value="class List: create_html_readers_list() - initialized" />
+    <option name="LAST_COMMIT_MESSAGE" value="class List: create_html_readers_list() - initialized" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -399,8 +407,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/generator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8817035">
-          <caret line="76" column="0" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.85804415">
+          <caret line="90" column="30" selection-start-line="90" selection-start-column="30" selection-end-line="90" selection-end-column="30" />
           <folding />
         </state>
       </provider>

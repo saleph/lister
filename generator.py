@@ -74,3 +74,18 @@ class List(object):
     def create_html_readers_list(self):
         """Creates html file with list of readers"""
         self.sort_by_speeches()
+
+        head = """<!DOCTYPE html>
+                    <html>
+                    <head>
+                    <style>
+                    table, th, td {
+                        border: 1px solid black;
+                        border-collapse: collapse;
+                    }
+                    th, td {
+                        padding: 5px;
+                        text-align: left;
+                    }
+                    </style>
+                    </head>"""
