@@ -1,3 +1,6 @@
+import json
+
+
 class Attribute(object):
     """
     Stores an indexes of an attribute used in lists of readers.
@@ -7,3 +10,4 @@ class Attribute(object):
     lection = 2
     psalm = 3
     believers_pray = 4
+
