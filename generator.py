@@ -15,8 +15,9 @@ class Attribute(object):
 class List(object):
     """
     List of available people and their lection preferences.
-    Attributes of each line in 'self.list' are the same as in 'Attribute' class.
-
+    Each person has 3 fields describing state of relation towards a lection:
+    e.g. value of 'psalm' == -1 mean the person doesn't want to be appointed
+    to this function. value >= 0 describing readiness to be appointed
     """
     def __init__(self):
         self.list = None
@@ -26,3 +27,4 @@ class List(object):
         """Loads data from 'list.json' and place it into 'self.list'."""
         with open("list.json") as file:
             self.list = json.loads(file.read())
+
