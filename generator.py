@@ -66,3 +66,7 @@ class List(object):
             file.write(json.dumps(self.list))
 
         return True
+
+    def sort_by_speeches(self):
+        """Sorts self.list by number of speeches."""
+        self.list.sort(key=lambda person: person[Attribute.speech_number])
