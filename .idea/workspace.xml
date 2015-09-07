@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41d89a24-a5f1-40b9-89ea-203a1f713449" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/lister.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/generator.py" afterPath="$PROJECT_DIR$/generator.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -30,8 +27,8 @@
       <file leaf-file-name="generator.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/generator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.85804415">
-              <caret line="100" column="105" selection-start-line="100" selection-start-column="105" selection-end-line="100" selection-end-column="105" />
+            <state vertical-scroll-proportion="0.6451104">
+              <caret line="113" column="57" selection-start-line="113" selection-start-column="57" selection-end-line="113" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -366,7 +363,13 @@
       <option name="project" value="LOCAL" />
       <updated>1441618442575</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="class List: create_html_readers_list() - extend html_file">
+      <created>1441642671070</created>
+      <option name="number" value="00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1441642671070</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -375,6 +378,7 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24963397" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -383,7 +387,6 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -418,7 +421,8 @@
     <MESSAGE value="class List: create_html_readers_list() - initialized" />
     <MESSAGE value="class List: create_html_readers_list() - skeleton of html: head" />
     <MESSAGE value="class List: create_html_readers_list() - parameters changed" />
-    <option name="LAST_COMMIT_MESSAGE" value="class List: create_html_readers_list() - parameters changed" />
+    <MESSAGE value="class List: create_html_readers_list() - extend html_file" />
+    <option name="LAST_COMMIT_MESSAGE" value="class List: create_html_readers_list() - extend html_file" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -442,8 +446,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/generator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.85804415">
-          <caret line="100" column="105" selection-start-line="100" selection-start-column="105" selection-end-line="100" selection-end-column="105" />
+        <state vertical-scroll-proportion="0.6451104">
+          <caret line="113" column="57" selection-start-line="113" selection-start-column="57" selection-end-line="113" selection-end-column="57" />
           <folding />
         </state>
       </provider>

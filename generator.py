@@ -13,9 +13,8 @@ class Attribute(object):
 
 class List(object):
     """
-    List of available people and their lection preferences.
-    Each person has 3 fields describing state of relation towards a lection and speech_number
-    used to sorting before new reading list generation
+    List of available people and their lection preferences. Each person has 3 fields describing state of relation
+    towards a lection and speech_number used to sorting before new reading list generation.
     """
     def __init__(self):
         self.list = []
@@ -49,8 +48,8 @@ class List(object):
     def delete_person(self, name):
         """
         Removes person from the list.
-        Handling situation when exist more than one the same names is unnecessary -
-        it doesn't have an influence for second person.
+        Handling situation when exist more than one the same names is unnecessary - it doesn't have an influence
+        for second person.
         """
         for i in range(len(self.list)):
             if name in self.list[i]:
@@ -73,19 +72,23 @@ class List(object):
 
     def create_html_readers_list(self, days_and_hours):
         """
-        Creates html file with list of readers
+        Creates html file with list of readers.
+
         :param days_and_hours: structure [["date1", ["hour1", "hour2"]], (...), ["date_n", ["hour1", (...), "hour_n"]]
         :return: True if successful, False if invalid input.
         """
         self.sort_by_speeches()
 
-        if not self.check_dates_table(days_and_hours):
+        if not self.check_dates_hours_table(days_and_hours):
             return False
 
-        html_file = """<!DOCTYPE html>
+        html_file = '''<!DOCTYPE html>
                     <html>
                     <head>
                     <style>
+                    h1 {
+                        text-align: center;
+                    }
                     table, th, td {
                         border: 1px solid black;
                         border-collapse: collapse;
@@ -97,5 +100,23 @@ class List(object):
                     </style>
                     </head>
                     <body>
-                    <h1>Lista czytających: %s - %s""" % (days_and_hours[0][0],
-                                                         days_and_hours[-1][0])  # first and last date used in list
+                    <h1>Lista czytających: {first} - {last}</h1>\n'''.format(first=days_and_hours[0][0],
+                                                                             last=days_and_hours[-1][0])
+
+        html_file = '''{head}<table>
+                        <tr>
+                        <th>Data</th>
+                        <th>Godzina</th>
+                        <th>I czytanie</th>
+                        <th>II czytanie</th>
+                        <th>Psalm</th>
+                        <th>Modlitwa wiernych</th>
+                        </tr>\n'''.format(head=html_file)
+
+        for date in days_and_hours:
+            html_file = "{head}<tr>\n".format(head=html_file)
+
+            # span the same number of rows as date[1] has various hours
+            html_file = '{head}<th rowspan="{no_hours}">'.format(head=html_file, no_hours=len(date[1]))
+
+            html_file = '{head}{date}</th>\n'.format(head=html_file, date=date[0])
