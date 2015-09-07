@@ -27,8 +27,8 @@
       <file leaf-file-name="generator.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/generator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6451104">
-              <caret line="113" column="57" selection-start-line="113" selection-start-column="57" selection-end-line="113" selection-end-column="57" />
+            <state vertical-scroll-proportion="1.3548896">
+              <caret line="120" column="100" selection-start-line="120" selection-start-column="100" selection-end-line="120" selection-end-column="100" />
               <folding />
             </state>
           </provider>
@@ -369,7 +369,13 @@
       <option name="project" value="LOCAL" />
       <updated>1441642671070</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="create_html_readers_list() - new data to html_file added">
+      <created>1441645695612</created>
+      <option name="number" value="00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1441645695612</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -422,7 +428,8 @@
     <MESSAGE value="class List: create_html_readers_list() - skeleton of html: head" />
     <MESSAGE value="class List: create_html_readers_list() - parameters changed" />
     <MESSAGE value="class List: create_html_readers_list() - extend html_file" />
-    <option name="LAST_COMMIT_MESSAGE" value="class List: create_html_readers_list() - extend html_file" />
+    <MESSAGE value="create_html_readers_list() - new data to html_file added" />
+    <option name="LAST_COMMIT_MESSAGE" value="create_html_readers_list() - new data to html_file added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -446,8 +453,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/generator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6451104">
-          <caret line="113" column="57" selection-start-line="113" selection-start-column="57" selection-end-line="113" selection-end-column="57" />
+        <state vertical-scroll-proportion="1.3548896">
+          <caret line="120" column="100" selection-start-line="120" selection-start-column="100" selection-end-line="120" selection-end-column="100" />
           <folding />
         </state>
       </provider>

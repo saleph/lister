@@ -74,7 +74,8 @@ class List(object):
         """
         Creates html file with list of readers.
 
-        :param days_and_hours: structure [["date1", ["hour1", "hour2"]], (...), ["date_n", ["hour1", (...), "hour_n"]]
+        :param days_and_hours: structure: [["date1", if_second_lection, ["hour1", "hour2"]], (...),
+        ["date_n", if_second_lection, ["hour1", (...), "hour_n"]]
         :return: True if successful, False if invalid input.
         """
         self.sort_by_speeches()
@@ -117,6 +118,6 @@ class List(object):
             html_file = "{head}<tr>\n".format(head=html_file)
 
             # span the same number of rows as date[1] has various hours
-            html_file = '{head}<th rowspan="{no_hours}">'.format(head=html_file, no_hours=len(date[1]))
+            html_file = '{head}<th rowspan="{no_hours}">'.format(head=html_file, no_hours=len(date[2]))
 
             html_file = '{head}{date}</th>\n'.format(head=html_file, date=date[0])
