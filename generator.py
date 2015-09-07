@@ -22,7 +22,11 @@ class List(object):
     towards a lection and speech_number used to sorting before new reading list generation.
     """
 
-    def __init__(self):
+    def __init__(self) -> List:
+        """
+        Init an list with people and generator's vars.
+        :rtype : List
+        """
         self.list = []
         self.html_file = ''
         self.load_list()
