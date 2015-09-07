@@ -75,10 +75,14 @@ class List(object):
         """
         Creates html file with list of readers
         :param days_and_hours: structure [["date1", ["hour1", "hour2"]], (...), ["date_n", ["hour1", (...), "hour_n"]]
+        :return: True if successful, False if invalid input.
         """
         self.sort_by_speeches()
 
-        head = """<!DOCTYPE html>
+        if not self.check_dates_table(days_and_hours):
+            return False
+
+        html_file = """<!DOCTYPE html>
                     <html>
                     <head>
                     <style>
@@ -91,4 +95,7 @@ class List(object):
                         text-align: center;
                     }
                     </style>
-                    </head>"""
+                    </head>
+                    <body>
+                    <h1>Lista czytających: %s - %s""" % (days_and_hours[0][0],
+                                                         days_and_hours[-1][0])  # first and last date used in list
