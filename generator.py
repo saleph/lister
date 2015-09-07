@@ -71,8 +71,11 @@ class List(object):
         """Sorts self.list by number of speeches."""
         self.list.sort(key=lambda person: person[Attribute.speech_number])
 
-    def create_html_readers_list(self):
-        """Creates html file with list of readers"""
+    def create_html_readers_list(self, days_and_hours):
+        """
+        Creates html file with list of readers
+        :param days_and_hours: structure [["date1", ["hour1", "hour2"]], (...), ["date_n", ["hour1", (...), "hour_n"]]
+        """
         self.sort_by_speeches()
 
         head = """<!DOCTYPE html>
@@ -85,7 +88,7 @@ class List(object):
                     }
                     th, td {
                         padding: 5px;
-                        text-align: left;
+                        text-align: center;
                     }
                     </style>
                     </head>"""
