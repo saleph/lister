@@ -101,17 +101,17 @@ class List(object):
                           '<html>\n'
                           '<head>\n'
                           '<style>\n'
-                          'h1 {\n'
+                          'h1 {{\n'
                           '    text-align: center;\n'
-                          '}\n'
-                          'table, th, td {\n'
+                          '}}\n'
+                          'table, th, td {{\n'
                           '    border: 1px solid black;\n'
                           '    border-collapse: collapse;\n'
-                          '}\n'
-                          'th, td {\n'
-                          '    padding: 5px;\n'
+                          '}}\n'
+                          'th, td {{\n'
+                          '    padding: 5px\;\n'
                           '    text-align: center;\n'
-                          '}\n'
+                          '}}\n'
                           '</style>\n'
                           '</head>\n'
                           '<body>\n'
@@ -154,8 +154,9 @@ class List(object):
                               ' <td>{lct_2}</td>\n'
                               ' <td>{ps}</td>\n'
                               ' <td>{pray}</td>\n'
-                              '</tr>\n').format(head=self.html_file, lct_1=first_lection, lct_2=second_lection,
-                                                ps=psalm, pray=believers_pray)
+                              '</tr>\n').format(head=self.html_file, hour=date[Attribute.hours][0],
+                                                lct_1=first_lection, lct_2=second_lection, ps=psalm,
+                                                pray=believers_pray)
 
             for i in range(1, len(date[Attribute.hours])):
                 first_lection = self.get_reader(Attribute.lection)
@@ -175,7 +176,7 @@ class List(object):
                                   ' <td>{lct_2}</td>\n'
                                   ' <td>{ps}</td>\n'
                                   ' <td>{pray}</td>\n'
-                                  '</tr>\n').format(head=self.html_file, lct_1=first_lection, lct_2=second_lection,
+                                  '</tr>\n').format(head=self.html_file, hour=date[Attribute.hours][i], lct_1=first_lection, lct_2=second_lection,
                                                     ps=psalm, pray=believers_pray)
         self.html_file = ('{head}</table>\n'
                           '</body>\n'
