@@ -155,7 +155,7 @@ class List(object):
                               ' <td>{ps}</td>\n'
                               ' <td>{pray}</td>\n'
                               '</tr>\n').format(head=self.html_file, lct_1=first_lection, lct_2=second_lection,
-                                              ps=psalm, pray=believers_pray)
+                                                ps=psalm, pray=believers_pray)
 
             for i in range(1, len(date[Attribute.hours])):
                 first_lection = self.get_reader(Attribute.lection)
@@ -176,7 +176,7 @@ class List(object):
                                   ' <td>{ps}</td>\n'
                                   ' <td>{pray}</td>\n'
                                   '</tr>\n').format(head=self.html_file, lct_1=first_lection, lct_2=second_lection,
-                                                  ps=psalm, pray=believers_pray)
+                                                    ps=psalm, pray=believers_pray)
         self.html_file = ('{head}</table>\n'
                           '</body>\n'
                           '</html>').format(head=self.html_file)

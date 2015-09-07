@@ -27,8 +27,8 @@
       <file leaf-file-name="generator.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/generator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.73974764">
-              <caret line="183" column="57" selection-start-line="183" selection-start-column="57" selection-end-line="183" selection-end-column="57" />
+            <state vertical-scroll-proportion="1.1419559">
+              <caret line="188" column="0" selection-start-line="188" selection-start-column="0" selection-end-line="188" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -457,7 +457,13 @@
       <option name="project" value="LOCAL" />
       <updated>1441654702483</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="some visual corrections">
+      <created>1441656158112</created>
+      <option name="number" value="00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1441656158112</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -521,7 +527,8 @@
     <MESSAGE value="generating {date}.html file from self.html_file" />
     <MESSAGE value="specify rtype of methods" />
     <MESSAGE value="specify rtype of init" />
-    <option name="LAST_COMMIT_MESSAGE" value="specify rtype of init" />
+    <MESSAGE value="some visual corrections" />
+    <option name="LAST_COMMIT_MESSAGE" value="some visual corrections" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -548,8 +555,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/generator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.73974764">
-          <caret line="183" column="57" selection-start-line="183" selection-start-column="57" selection-end-line="183" selection-end-column="57" />
+        <state vertical-scroll-proportion="1.1419559">
+          <caret line="188" column="0" selection-start-line="188" selection-start-column="0" selection-end-line="188" selection-end-column="0" />
           <folding />
         </state>
       </provider>
