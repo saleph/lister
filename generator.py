@@ -19,6 +19,8 @@ class List(object):
     def __init__(self):
         self.list = []
         self.load_list()
+        # last person picked is used in html list generating
+        self.last_person_picked = -1
 
     def load_list(self):
         """Loads data from 'list.json' and place it into 'self.list'."""
@@ -66,6 +68,7 @@ class List(object):
 
         return True
 
+    # html list generating methods
     def sort_by_speeches(self):
         """Sorts self.list by number of speeches."""
         self.list.sort(key=lambda person: person[Attribute.speech_number])
@@ -80,8 +83,11 @@ class List(object):
         """
         self.sort_by_speeches()
 
-        if not self.check_dates_hours_table(days_and_hours):
-            return False
+        # attributes used in generating list to html
+        first_lection = ''
+        second_lection = ''
+        psalm = ''
+        believers_pray = ''
 
         html_file = '''<!DOCTYPE html>
                     <html>
@@ -115,9 +121,23 @@ class List(object):
                         </tr>\n'''.format(head=html_file)
 
         for date in days_and_hours:
-            html_file = "{head}<tr>\n".format(head=html_file)
+            html_file = '{head}<tr>\n'.format(head=html_file)
 
-            # span the same number of rows as date[1] has various hours
-            html_file = '{head}<th rowspan="{no_hours}">'.format(head=html_file, no_hours=len(date[2]))
+            # span the same number of rows as date[2] has various hours
+            html_file = '{head}<th rowspan="{no_hours}">{date}</th>\n'.format(head=html_file, no_hours=len(date[2]),
 
-            html_file = '{head}{date}</th>\n'.format(head=html_file, date=date[0])
+            # first hour has to be written manually because of started <tr>                                                                  date=date[0])
+            first_lection = self.get_lection_reader()
+            # if second lection will be read
+            if date[1]:
+                second_lection = self.get_lection_reader()
+            psalm = self.get_psalm_reader()
+            believers_pray = self.get_believers_pray_reader()
+
+            html_file = '''{head}<th>{hour}</th>
+                            <td>{lct_1}</td>
+                            <td>{lct_2}</td>
+                            <td>{ps}</td>
+                            <td>{pray}</td>
+                            </tr>'''.format(head=html_file, lct_1=first_lection, lct_2=second_lection,
+                                            ps=psalm, pray=believers_pray)
