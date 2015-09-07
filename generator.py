@@ -22,7 +22,7 @@ class List(object):
     towards a lection and speech_number used to sorting before new reading list generation.
     """
 
-    def __init__(self) -> List:
+    def __init__(self) -> None:
         """
         Init an list with people and generator's vars.
         :rtype : List
@@ -33,8 +33,11 @@ class List(object):
 
     def load_list(self):
         """Loads data from 'list.json' and place it into 'self.list'."""
-        with open("list.json", 'r') as file:
-            self.list = json.loads(file.read())
+        try:
+            with open("list.json", 'r') as file:
+                self.list = json.loads(file.read())
+        except FileNotFoundError:
+            pass
 
     def add_new_person(self, name, lection, psalm, believers_pray) -> bool:
         """Add new person at the end of self.list and update 'list.json'."""
@@ -86,47 +89,47 @@ class List(object):
                 person[Attribute.speech_number] += 1
                 return person[Attribute.name]
 
-    def create_html_readers_list(self, days_and_hours) -> bool:
+    def create_html_readers_list(self, days_hours) -> bool:
         """
         Creates html file with list of readers.
 
-        :param days_and_hours: structure: [["date1", if_second_lection, ["hour1", "hour2"]], (...),
+        :param days_hours: structure: [["date1", if_second_lection, ["hour1", "hour2"]], (...),
         ["date_n", if_second_lection, ["hour1", (...), "hour_n"]]
         :return: True if successful, False if invalid input.
         """
-        self.html_file = '''<!DOCTYPE html>
-                    <html>
-                    <head>
-                    <style>
-                    h1 {
-                        text-align: center;
-                    }
-                    table, th, td {
-                        border: 1px solid black;
-                        border-collapse: collapse;
-                    }
-                    th, td {
-                        padding: 5px;
-                        text-align: center;
-                    }
-                    </style>
-                    </head>
-                    <body>
-                    <h1>Lista czytających: {first} - {last}</h1>\n'''.format(first=days_and_hours[0][Attribute.date],
-                                                                             last=days_and_hours[-1][Attribute.date])
+        self.html_file = ('<!DOCTYPE html>\n'
+                          '<html>\n'
+                          '<head>\n'
+                          '<style>\n'
+                          'h1 {\n'
+                          '    text-align: center;\n'
+                          '}\n'
+                          'table, th, td {\n'
+                          '    border: 1px solid black;\n'
+                          '    border-collapse: collapse;\n'
+                          '}\n'
+                          'th, td {\n'
+                          '    padding: 5px;\n'
+                          '    text-align: center;\n'
+                          '}\n'
+                          '</style>\n'
+                          '</head>\n'
+                          '<body>\n'
+                          '<h1>Lista czytających: {first} - {last}</h1>\n').format(first=days_hours[0][Attribute.date],
+                                                                                   last=days_hours[-1][Attribute.date])
 
-        self.html_file = '''{head}<table>
-                        <tr>
-                        <th>Data</th>
-                        <th>Godzina</th>
-                        <th>I czytanie</th>
-                        <th>II czytanie</th>
-                        <th>Psalm</th>
-                        <th>Modlitwa wiernych</th>
-                        </tr>\n'''.format(head=self.html_file)
+        self.html_file = ('{head}<table>\n'
+                          '<tr>\n'
+                          ' <th>Data</th>\n'
+                          ' <th>Godzina</th>\n'
+                          ' <th>I czytanie</th>\n'
+                          ' <th>II czytanie</th>\n'
+                          ' <th>Psalm</th>\n'
+                          ' <th>Modlitwa wiernych</th>\n'
+                          '</tr>\n').format(head=self.html_file)
 
         # main block of generator
-        for date in days_and_hours:
+        for date in days_hours:
             self.html_file = '{head}<tr>\n'.format(head=self.html_file)
 
             # span the same number of rows as date[Attribute.hours] has various hours
@@ -146,12 +149,12 @@ class List(object):
             psalm = self.get_reader(Attribute.psalm)
             believers_pray = self.get_reader(Attribute.believers_pray)
 
-            self.html_file = '''{head}<th>{hour}</th>
-                            <td>{lct_1}</td>
-                            <td>{lct_2}</td>
-                            <td>{ps}</td>
-                            <td>{pray}</td>
-                            </tr>\n'''.format(head=self.html_file, lct_1=first_lection, lct_2=second_lection,
+            self.html_file = ('{head}<th>{hour}</th>\n'
+                              ' <td>{lct_1}</td>\n'
+                              ' <td>{lct_2}</td>\n'
+                              ' <td>{ps}</td>\n'
+                              ' <td>{pray}</td>\n'
+                              '</tr>\n').format(head=self.html_file, lct_1=first_lection, lct_2=second_lection,
                                               ps=psalm, pray=believers_pray)
 
             for i in range(1, len(date[Attribute.hours])):
@@ -166,19 +169,19 @@ class List(object):
                 psalm = self.get_reader(Attribute.psalm)
                 believers_pray = self.get_reader(Attribute.believers_pray)
 
-                self.html_file = '''{head}<tr>
-                                <th>{hour}</th>
-                                <td>{lct_1}</td>
-                                <td>{lct_2}</td>
-                                <td>{ps}</td>
-                                <td>{pray}</td>
-                                </tr>\n'''.format(head=self.html_file, lct_1=first_lection, lct_2=second_lection,
+                self.html_file = ('{head}<tr>\n'
+                                  ' <th>{hour}</th>\n'
+                                  ' <td>{lct_1}</td>\n'
+                                  ' <td>{lct_2}</td>\n'
+                                  ' <td>{ps}</td>\n'
+                                  ' <td>{pray}</td>\n'
+                                  '</tr>\n').format(head=self.html_file, lct_1=first_lection, lct_2=second_lection,
                                                   ps=psalm, pray=believers_pray)
-        self.html_file = '''{head}</table>
-                        </body>
-                        </html>'''.format(head=self.html_file)
+        self.html_file = ('{head}</table>\n'
+                          '</body>\n'
+                          '</html>').format(head=self.html_file)
 
-        first_date_html_file = '{name}.html'.format(name=days_and_hours[0][Attribute.date])
+        first_date_html_file = '{name}.html'.format(name=days_hours[0][Attribute.date])
         with open(first_date_html_file, 'w') as file:
             file.write(self.html_file)
 

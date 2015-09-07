@@ -27,8 +27,8 @@
       <file leaf-file-name="generator.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/generator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3564669">
-              <caret line="26" column="54" selection-start-line="26" selection-start-column="54" selection-end-line="26" selection-end-column="54" />
+            <state vertical-scroll-proportion="0.73974764">
+              <caret line="183" column="57" selection-start-line="183" selection-start-column="57" selection-end-line="183" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -38,8 +38,10 @@
         <entry file="file://$PROJECT_DIR$/tests.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="4" column="9" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
-              <folding />
+              <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+              <folding>
+                <marker date="1441655204960" expanded="true" signature="30:706" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -449,7 +451,13 @@
       <option name="project" value="LOCAL" />
       <updated>1441654590048</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="specify rtype of init">
+      <created>1441654702483</created>
+      <option name="number" value="00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1441654702483</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -512,7 +520,8 @@
     <MESSAGE value="html_file - made class attribute" />
     <MESSAGE value="generating {date}.html file from self.html_file" />
     <MESSAGE value="specify rtype of methods" />
-    <option name="LAST_COMMIT_MESSAGE" value="specify rtype of methods" />
+    <MESSAGE value="specify rtype of init" />
+    <option name="LAST_COMMIT_MESSAGE" value="specify rtype of init" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -530,15 +539,17 @@
     <entry file="file://$PROJECT_DIR$/tests.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="9" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
-          <folding />
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding>
+            <marker date="1441655204960" expanded="true" signature="30:706" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/generator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3564669">
-          <caret line="26" column="54" selection-start-line="26" selection-start-column="54" selection-end-line="26" selection-end-column="54" />
+        <state vertical-scroll-proportion="0.73974764">
+          <caret line="183" column="57" selection-start-line="183" selection-start-column="57" selection-end-line="183" selection-end-column="57" />
           <folding />
         </state>
       </provider>
