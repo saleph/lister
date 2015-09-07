@@ -173,3 +173,9 @@ class List(object):
         self.html_file = '''{head}</table>
                         </body>
                         </html>'''.format(head=self.html_file)
+
+        first_date_html_file = '{name}.html'.format(name=days_and_hours[0][Attribute.date])
+        with open(first_date_html_file, 'w') as file:
+            file.write(self.html_file)
+
+        return True
