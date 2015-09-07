@@ -32,7 +32,7 @@ class List(object):
         with open("list.json", 'r') as file:
             self.list = json.loads(file.read())
 
-    def add_new_person(self, name, lection, psalm, believers_pray):
+    def add_new_person(self, name, lection, psalm, believers_pray) -> bool:
         """Add new person at the end of self.list and update 'list.json'."""
         name_validity = isinstance(name, str)
         lection_validity = isinstance(lection, bool)
@@ -46,7 +46,7 @@ class List(object):
         else:
             return False
 
-    def delete_person(self, name):
+    def delete_person(self, name) -> bool:
         """
         Removes person from the list.
         Handling situation when exist more than one the same names is unnecessary - it doesn't have an influence
@@ -60,7 +60,7 @@ class List(object):
 
         return False
 
-    def json_file_update(self):
+    def json_file_update(self) -> bool:
         """Override file list.json with new self.list."""
         with open("list.json", 'w') as file:
             file.write(json.dumps(self.list))
@@ -72,7 +72,7 @@ class List(object):
         """Sorts self.list by number of speeches."""
         self.list.sort(key=lambda person: person[Attribute.speech_number])
 
-    def get_reader(self, lection_type):
+    def get_reader(self, lection_type) -> str:
         """Return name of person whose speech_number is smallest and his relation towards lection 'type' is True.
         :rtype:str
         """
@@ -82,7 +82,7 @@ class List(object):
                 person[Attribute.speech_number] += 1
                 return person[Attribute.name]
 
-    def create_html_readers_list(self, days_and_hours):
+    def create_html_readers_list(self, days_and_hours) -> bool:
         """
         Creates html file with list of readers.
 
