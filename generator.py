@@ -19,8 +19,6 @@ class List(object):
     def __init__(self):
         self.list = []
         self.load_list()
-        # last person picked is used in html list generating
-        self.last_person_picked = -1
 
     def load_list(self):
         """Loads data from 'list.json' and place it into 'self.list'."""
@@ -73,6 +71,14 @@ class List(object):
         """Sorts self.list by number of speeches."""
         self.list.sort(key=lambda person: person[Attribute.speech_number])
 
+    def get_reader(self, type):
+        """Return name of person whose speech_number is smallest and his relation towards lection 'type' is True."""
+        self.sort_by_speeches()
+        for person in self.list:
+            if person[type]:
+                person[Attribute.speech_number] += 1
+                return person[Attribute.name]
+
     def create_html_readers_list(self, days_and_hours):
         """
         Creates html file with list of readers.
@@ -81,8 +87,6 @@ class List(object):
         ["date_n", if_second_lection, ["hour1", (...), "hour_n"]]
         :return: True if successful, False if invalid input.
         """
-        self.sort_by_speeches()
-
         # attributes used in generating list to html
         first_lection = ''
         second_lection = ''
@@ -125,14 +129,15 @@ class List(object):
 
             # span the same number of rows as date[2] has various hours
             html_file = '{head}<th rowspan="{no_hours}">{date}</th>\n'.format(head=html_file, no_hours=len(date[2]),
+                                                                              date=date[0])
 
-            # first hour has to be written manually because of started <tr>                                                                  date=date[0])
-            first_lection = self.get_lection_reader()
+            # first hour has to be written manually because of started <tr>
+            first_lection = self.get_reader(Attribute.lection)
             # if second lection will be read
             if date[1]:
-                second_lection = self.get_lection_reader()
-            psalm = self.get_psalm_reader()
-            believers_pray = self.get_believers_pray_reader()
+                second_lection = self.get_reader(Attribute.lection)
+            psalm = self.get_reader(Attribute.psalm)
+            believers_pray = self.get_reader(Attribute.believers_pray)
 
             html_file = '''{head}<th>{hour}</th>
                             <td>{lct_1}</td>
