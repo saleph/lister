@@ -15,6 +15,7 @@ class Attribute(object):
     is_second_lection = 1
     hours = 2
 
+
 class List(object):
     """
     List of available people and their lection preferences. Each person has 3 fields describing state of relation
@@ -69,11 +70,11 @@ class List(object):
         """Sorts self.list by number of speeches."""
         self.list.sort(key=lambda person: person[Attribute.speech_number])
 
-    def get_reader(self, type):
+    def get_reader(self, lection_type):
         """Return name of person whose speech_number is smallest and his relation towards lection 'type' is True."""
         self.sort_by_speeches()
         for person in self.list:
-            if person[type]:
+            if person[lection_type]:
                 person[Attribute.speech_number] += 1
                 return person[Attribute.name]
 
@@ -85,12 +86,6 @@ class List(object):
         ["date_n", if_second_lection, ["hour1", (...), "hour_n"]]
         :return: True if successful, False if invalid input.
         """
-        # attributes used in generating list to html
-        first_lection = ''
-        second_lection = ''
-        psalm = ''
-        believers_pray = ''
-
         html_file = '''<!DOCTYPE html>
                     <html>
                     <head>
@@ -122,6 +117,7 @@ class List(object):
                         <th>Modlitwa wiernych</th>
                         </tr>\n'''.format(head=html_file)
 
+        # main block of generator
         for date in days_and_hours:
             html_file = '{head}<tr>\n'.format(head=html_file)
 
@@ -132,9 +128,13 @@ class List(object):
 
             # first hour has to be written manually because of started <tr>
             first_lection = self.get_reader(Attribute.lection)
+
             # if second lection will be read
             if date[Attribute.is_second_lection]:
                 second_lection = self.get_reader(Attribute.lection)
+            else:
+                second_lection = ''
+
             psalm = self.get_reader(Attribute.psalm)
             believers_pray = self.get_reader(Attribute.believers_pray)
 
@@ -143,5 +143,29 @@ class List(object):
                             <td>{lct_2}</td>
                             <td>{ps}</td>
                             <td>{pray}</td>
-                            </tr>'''.format(head=html_file, lct_1=first_lection, lct_2=second_lection,
+                            </tr>\n'''.format(head=html_file, lct_1=first_lection, lct_2=second_lection,
                                             ps=psalm, pray=believers_pray)
+
+            for i in range(1, len(date[Attribute.hours])):
+                first_lection = self.get_reader(Attribute.lection)
+
+                # if second lection will be read
+                if date[Attribute.is_second_lection]:
+                    second_lection = self.get_reader(Attribute.lection)
+                else:
+                    second_lection = ''
+
+                psalm = self.get_reader(Attribute.psalm)
+                believers_pray = self.get_reader(Attribute.believers_pray)
+
+                html_file = '''{head}<tr>
+                                <th>{hour}</th>
+                                <td>{lct_1}</td>
+                                <td>{lct_2}</td>
+                                <td>{ps}</td>
+                                <td>{pray}</td>
+                                </tr>\n'''.format(head=html_file, lct_1=first_lection, lct_2=second_lection,
+                                            ps=psalm, pray=believers_pray)
+        html_file = '''{head}</table>
+                        </body>
+                        </html>'''.format(head=html_file)
