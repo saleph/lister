@@ -27,8 +27,8 @@
       <file leaf-file-name="generator.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/generator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.31388012">
-              <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
+            <state vertical-scroll-proportion="3.4542587">
+              <caret line="146" column="74" selection-start-line="146" selection-start-column="74" selection-end-line="146" selection-end-column="74" />
               <folding />
             </state>
           </provider>
@@ -413,7 +413,13 @@
       <option name="project" value="LOCAL" />
       <updated>1441649821202</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="deleted id attribute in List.list">
+      <created>1441650073949</created>
+      <option name="number" value="00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1441650073949</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -470,7 +476,8 @@
     <MESSAGE value="create_html_readers_list() - days_and_hours - bool field 'if_second_lection' added" />
     <MESSAGE value="extend html building - first row" />
     <MESSAGE value="get_reader() added" />
-    <option name="LAST_COMMIT_MESSAGE" value="get_reader() added" />
+    <MESSAGE value="deleted id attribute in List.list" />
+    <option name="LAST_COMMIT_MESSAGE" value="deleted id attribute in List.list" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -495,8 +502,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/generator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.31388012">
-          <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
+        <state vertical-scroll-proportion="3.4542587">
+          <caret line="146" column="74" selection-start-line="146" selection-start-column="74" selection-end-line="146" selection-end-column="74" />
           <folding />
         </state>
       </provider>

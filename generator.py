@@ -2,13 +2,18 @@ import json
 
 
 class Attribute(object):
-    """Stores an indexes of an attribute used in lists of readers."""
+    """Stores an indexes of an attribute used in lists of readers and dates."""
+    # List.list
     name = 0
     lection = 1
     psalm = 2
     believers_pray = 3
     speech_number = 4
 
+    # dates_and_hours
+    date = 0
+    is_second_lection = 1
+    hours = 2
 
 class List(object):
     """
@@ -104,8 +109,8 @@ class List(object):
                     </style>
                     </head>
                     <body>
-                    <h1>Lista czytających: {first} - {last}</h1>\n'''.format(first=days_and_hours[0][0],
-                                                                             last=days_and_hours[-1][0])
+                    <h1>Lista czytających: {first} - {last}</h1>\n'''.format(first=days_and_hours[0][Attribute.date],
+                                                                             last=days_and_hours[-1][Attribute.date])
 
         html_file = '''{head}<table>
                         <tr>
@@ -120,14 +125,15 @@ class List(object):
         for date in days_and_hours:
             html_file = '{head}<tr>\n'.format(head=html_file)
 
-            # span the same number of rows as date[2] has various hours
-            html_file = '{head}<th rowspan="{no_hours}">{date}</th>\n'.format(head=html_file, no_hours=len(date[2]),
-                                                                              date=date[0])
+            # span the same number of rows as date[Attribute.hours] has various hours
+            html_file = '{head}<th rowspan="{no_hours}">{date}</th>\n'.format(head=html_file,
+                                                                              no_hours=len(date[Attribute.hours]),
+                                                                              date=date[Attribute.date])
 
             # first hour has to be written manually because of started <tr>
             first_lection = self.get_reader(Attribute.lection)
             # if second lection will be read
-            if date[1]:
+            if date[Attribute.is_second_lection]:
                 second_lection = self.get_reader(Attribute.lection)
             psalm = self.get_reader(Attribute.psalm)
             believers_pray = self.get_reader(Attribute.believers_pray)
