@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="41d89a24-a5f1-40b9-89ea-203a1f713449" name="Default" comment="get_reader() added">
+    <list default="true" id="41d89a24-a5f1-40b9-89ea-203a1f713449" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/generator.py" afterPath="$PROJECT_DIR$/generator.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -27,8 +27,8 @@
       <file leaf-file-name="generator.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/generator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5205047">
-              <caret line="79" column="45" selection-start-line="79" selection-start-column="45" selection-end-line="79" selection-end-column="45" />
+            <state vertical-scroll-proportion="0.31388012">
+              <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -407,7 +407,13 @@
       <option name="project" value="LOCAL" />
       <updated>1441648439953</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="get_reader() added">
+      <created>1441649821202</created>
+      <option name="number" value="00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1441649821202</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -463,7 +469,8 @@
     <MESSAGE value="create_html_readers_list() - new data to html_file added" />
     <MESSAGE value="create_html_readers_list() - days_and_hours - bool field 'if_second_lection' added" />
     <MESSAGE value="extend html building - first row" />
-    <option name="LAST_COMMIT_MESSAGE" value="extend html building - first row" />
+    <MESSAGE value="get_reader() added" />
+    <option name="LAST_COMMIT_MESSAGE" value="get_reader() added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -488,8 +495,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/generator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5205047">
-          <caret line="79" column="45" selection-start-line="79" selection-start-column="45" selection-end-line="79" selection-end-column="45" />
+        <state vertical-scroll-proportion="0.31388012">
+          <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
           <folding />
         </state>
       </provider>

@@ -3,12 +3,11 @@ import json
 
 class Attribute(object):
     """Stores an indexes of an attribute used in lists of readers."""
-    person_id = 0
-    name = 1
-    lection = 2
-    psalm = 3
-    believers_pray = 4
-    speech_number = 5
+    name = 0
+    lection = 1
+    psalm = 2
+    believers_pray = 3
+    speech_number = 4
 
 
 class List(object):
@@ -33,13 +32,7 @@ class List(object):
         believers_pray_validity = isinstance(believers_pray, bool)
 
         if name_validity and lection_validity and psalm_validity and believers_pray_validity:
-            # get last id from list (if exist) and increment
-            if len(self.list) > 0:
-                new_id = self.list[-1][0] + 1
-            else:
-                new_id = 0
-
-            self.list.append([new_id, name, lection, psalm, believers_pray, 0])
+            self.list.append([name, lection, psalm, believers_pray, 0])
             self.json_file_update()
             return True
         else:
