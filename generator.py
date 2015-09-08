@@ -110,7 +110,6 @@ class List(object):
                           '    border-collapse: collapse;\n'
                           '}}\n'
                           'th, td {{\n'
-                          '    padding: 5px\;\n'
                           '    text-align: center;\n'
                           '}}\n'
                           '</style>\n'
@@ -185,7 +184,10 @@ class List(object):
                           '</body>\n'
                           '</html>').format(head=self.html_file)
 
-        first_date_html_file = '{name}.html'.format(name=days_hours[0][Attribute.date])
+        first_date_html_file = '{first} - {last}'.format(first=days_hours[0][Attribute.date][0:5],
+                                                         last=days_hours[-1][Attribute.date][0:5])
+
+        first_date_html_file = '{head}.html'.format(head=first_date_html_file)
         with open(first_date_html_file, 'w') as file:
             file.write(self.html_file)
 
