@@ -100,6 +100,7 @@ class List(object):
         self.html_file = ('<!DOCTYPE html>\n'
                           '<html>\n'
                           '<head>\n'
+                          '<meta charset=\"UTF-8\">\n'
                           '<style>\n'
                           'h1 {{\n'
                           '    text-align: center;\n'
@@ -177,7 +178,7 @@ class List(object):
                                   ' <td>{ps}</td>\n'
                                   ' <td>{pray}</td>\n'
                                   '</tr>\n').format(head=self.html_file, hour=date[Attribute.hours][i],
-                                                    lct_1=first_lection, lct_2=second_lection,ps=psalm,
+                                                    lct_1=first_lection, lct_2=second_lection, ps=psalm,
                                                     pray=believers_pray)
 
         self.html_file = ('{head}</table>\n'
