@@ -23,10 +23,7 @@ class List(object):
     """
 
     def __init__(self) -> None:
-        """
-        Init an list with people and generator's vars.
-        :rtype : List
-        """
+        """Init an list with readers and generator's vars."""
         self.list = []
         self.html_file = ''
         self.load_list()
@@ -144,7 +141,7 @@ class List(object):
             if date[Attribute.is_second_lection]:
                 second_lection = self.get_reader(Attribute.lection)
             else:
-                second_lection = ''
+                second_lection = '-'
 
             psalm = self.get_reader(Attribute.psalm)
             believers_pray = self.get_reader(Attribute.believers_pray)
@@ -165,7 +162,7 @@ class List(object):
                 if date[Attribute.is_second_lection]:
                     second_lection = self.get_reader(Attribute.lection)
                 else:
-                    second_lection = ''
+                    second_lection = '-'
 
                 psalm = self.get_reader(Attribute.psalm)
                 believers_pray = self.get_reader(Attribute.believers_pray)
