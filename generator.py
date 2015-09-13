@@ -2,18 +2,18 @@ import json
 
 
 class Attribute(object):
-    """Stores an indexes of an attribute used in lists of readers and dates."""
+    """Stores index of an attribute used in list of readers and dates."""
     # List.list
-    name = 0
-    lection = 1
-    psalm = 2
-    believers_pray = 3
-    speech_number = 4
+    NAME = 0
+    LECTION = 1
+    PSALM = 2
+    BELIEVERS_PRAY = 3
+    SPEECH_NUMBER = 4
 
     # dates_and_hours
-    date = 0
-    is_second_lection = 1
-    hours = 2
+    DATE = 0
+    IS_SECOND_LECTION = 1
+    HOURS = 2
 
 
 class List(object):
@@ -23,28 +23,28 @@ class List(object):
     """
 
     def __init__(self) -> None:
-        """Init an list with readers and generator's vars."""
-        self.list = []
+        """Init the list with readers and generator's vars."""
+        self.list_ = []
         self.html_file = ''
         self.load_list()
 
     def load_list(self):
-        """Loads data from 'list.json' and place it into 'self.list'."""
+        """Loads data from 'list.json' and place it into 'self.list_'."""
         try:
             with open("list.json", 'r') as file:
-                self.list = json.loads(file.read())
+                self.list_ = json.loads(file.read())
         except FileNotFoundError:
             pass
 
     def add_new_person(self, name, lection, psalm, believers_pray) -> bool:
-        """Add new person at the end of self.list and update 'list.json'."""
+        """Add new person at the end of self.list_ and update 'list.json'."""
         name_validity = isinstance(name, str)
         lection_validity = isinstance(lection, bool)
         psalm_validity = isinstance(psalm, bool)
         believers_pray_validity = isinstance(believers_pray, bool)
 
         if name_validity and lection_validity and psalm_validity and believers_pray_validity:
-            self.list.append([name, lection, psalm, believers_pray, 0])
+            self.list_.append([name, lection, psalm, believers_pray, 0])
             self.json_file_update()
             return True
         else:
@@ -56,35 +56,35 @@ class List(object):
         Handling situation when exist more than one the same names is unnecessary - it doesn't have an influence
         for second person.
         """
-        for i in range(len(self.list)):
-            if name in self.list[i]:
-                del self.list[i]
+        for i in range(len(self.list_)):
+            if name in self.list_[i]:
+                del self.list_[i]
                 self.json_file_update()
                 return True
 
         return False
 
     def json_file_update(self) -> bool:
-        """Override file list.json with new self.list."""
+        """Override file list.json with new self.list_."""
         with open("list.json", 'w') as file:
-            file.write(json.dumps(self.list))
+            file.write(json.dumps(self.list_))
 
         return True
 
     # html list generating methods
     def sort_by_speeches(self):
-        """Sorts self.list by number of speeches."""
-        self.list.sort(key=lambda person: person[Attribute.speech_number])
+        """Sorts self.list_ by number of speeches."""
+        self.list_.sort(key=lambda person: person[Attribute.SPEECH_NUMBER])
 
     def get_reader(self, lection_type) -> str:
         """Return name of person whose speech_number is smallest and his relation towards lection 'type' is True.
         :rtype:str
         """
         self.sort_by_speeches()
-        for person in self.list:
+        for person in self.list_:
             if person[lection_type]:
-                person[Attribute.speech_number] += 1
-                return person[Attribute.name]
+                person[Attribute.SPEECH_NUMBER] += 1
+                return person[Attribute.NAME]
 
     def create_html_readers_list(self, days_hours) -> bool:
         """
@@ -112,8 +112,8 @@ class List(object):
                           '</style>\n'
                           '</head>\n'
                           '<body>\n'
-                          '<h1>Lista czytających: {first} - {last}</h1>\n').format(first=days_hours[0][Attribute.date],
-                                                                                   last=days_hours[-1][Attribute.date])
+                          '<h1>Lista czytających: {first} - {last}</h1>\n').format(first=days_hours[0][Attribute.DATE],
+                                                                                   last=days_hours[-1][Attribute.DATE])
 
         self.html_file = ('{head}<table>\n'
                           '<tr>\n'
@@ -129,43 +129,43 @@ class List(object):
         for date in days_hours:
             self.html_file = '{head}<tr>\n'.format(head=self.html_file)
 
-            # span the same number of rows as date[Attribute.hours] has various hours
+            # span the same number of rows as date[Attribute.HOURS] has various hours
             self.html_file = '{head}<th rowspan="{no_hours}">{date}</th>\n'.format(head=self.html_file,
-                                                                                   no_hours=len(date[Attribute.hours]),
-                                                                                   date=date[Attribute.date])
+                                                                                   no_hours=len(date[Attribute.HOURS]),
+                                                                                   date=date[Attribute.DATE])
 
             # first hour has to be written manually because of started <tr>
-            first_lection = self.get_reader(Attribute.lection)
+            first_lection = self.get_reader(Attribute.LECTION)
 
             # if second lection will be read
-            if date[Attribute.is_second_lection]:
-                second_lection = self.get_reader(Attribute.lection)
+            if date[Attribute.IS_SECOND_LECTION]:
+                second_lection = self.get_reader(Attribute.LECTION)
             else:
                 second_lection = '-'
 
-            psalm = self.get_reader(Attribute.psalm)
-            believers_pray = self.get_reader(Attribute.believers_pray)
+            psalm = self.get_reader(Attribute.PSALM)
+            believers_pray = self.get_reader(Attribute.BELIEVERS_PRAY)
 
             self.html_file = ('{head}<th>{hour}</th>\n'
                               ' <td>{lct_1}</td>\n'
                               ' <td>{lct_2}</td>\n'
                               ' <td>{ps}</td>\n'
                               ' <td>{pray}</td>\n'
-                              '</tr>\n').format(head=self.html_file, hour=date[Attribute.hours][0],
+                              '</tr>\n').format(head=self.html_file, hour=date[Attribute.HOURS][0],
                                                 lct_1=first_lection, lct_2=second_lection, ps=psalm,
                                                 pray=believers_pray)
 
-            for i in range(1, len(date[Attribute.hours])):
-                first_lection = self.get_reader(Attribute.lection)
+            for i in range(1, len(date[Attribute.HOURS])):
+                first_lection = self.get_reader(Attribute.LECTION)
 
                 # if second lection will be read
-                if date[Attribute.is_second_lection]:
-                    second_lection = self.get_reader(Attribute.lection)
+                if date[Attribute.IS_SECOND_LECTION]:
+                    second_lection = self.get_reader(Attribute.LECTION)
                 else:
                     second_lection = '-'
 
-                psalm = self.get_reader(Attribute.psalm)
-                believers_pray = self.get_reader(Attribute.believers_pray)
+                psalm = self.get_reader(Attribute.PSALM)
+                believers_pray = self.get_reader(Attribute.BELIEVERS_PRAY)
 
                 self.html_file = ('{head}<tr>\n'
                                   ' <th>{hour}</th>\n'
@@ -173,7 +173,7 @@ class List(object):
                                   ' <td>{lct_2}</td>\n'
                                   ' <td>{ps}</td>\n'
                                   ' <td>{pray}</td>\n'
-                                  '</tr>\n').format(head=self.html_file, hour=date[Attribute.hours][i],
+                                  '</tr>\n').format(head=self.html_file, hour=date[Attribute.HOURS][i],
                                                     lct_1=first_lection, lct_2=second_lection, ps=psalm,
                                                     pray=believers_pray)
 
@@ -181,8 +181,8 @@ class List(object):
                           '</body>\n'
                           '</html>').format(head=self.html_file)
 
-        first_date_html_file = '{first} - {last}'.format(first=days_hours[0][Attribute.date][0:5],
-                                                         last=days_hours[-1][Attribute.date][0:5])
+        first_date_html_file = '{first} - {last}'.format(first=days_hours[0][Attribute.DATE][0:5],
+                                                         last=days_hours[-1][Attribute.DATE][0:5])
 
         first_date_html_file = '{head}.html'.format(head=first_date_html_file)
         with open(first_date_html_file, 'w') as file:
