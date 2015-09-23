@@ -1,7 +1,9 @@
+#!/usr/bin/python3
+# -*- coding: UTF-8 -*-
 import json
 
 
-class Attribute(object):
+class Attribute:
     """Stores index of an attribute used in list of readers and dates."""
     # List.list
     NAME = 0
@@ -16,7 +18,35 @@ class Attribute(object):
     HOURS = 2
 
 
-class List(object):
+class Reader:
+    def __init__(self, name, lection=False, psalm=False, believers_pray=False, speech_number=0):
+        if isinstance(name, str):
+            self.name = name
+        else:
+            raise ValueError("name has to be a string")
+
+        if isinstance(lection, bool) and isinstance(psalm, bool) and isinstance(believers_pray, bool):
+            self.lection = lection
+            self.psalm = psalm
+            self.believers_pray = believers_pray
+        else:
+            raise ValueError("lection/psalm/believers_pray field has to be a boolean")
+
+        # if every boolean field is False, raise ValueError
+        if not (lection or psalm or believers_pray):
+            raise ValueError("at least one boolean field has to be True")
+
+        if isinstance(speech_number, int):
+            self.speech_number = speech_number
+        else:
+            raise ValueError("speech_number has to be an integer")
+
+    def as_list(self):
+        return [self.name, self.lection, self.psalm, self.believers_pray, self.speech_number]
+
+
+
+class List:
     """
     List of available people and their lection preferences. Each person has 3 fields describing state of relation
     towards a lection and speech_number used to sorting before new reading list generation.
