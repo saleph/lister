@@ -45,6 +45,42 @@ class Reader:
         return [self.name, self.lection, self.psalm, self.believers_pray, self.speech_number]
 
 
+class ListOfReaders:
+    def __init__(self):
+        try:
+            with open('list_of_readers.json') as json_file:
+                for reader_data in json_file.readlines():
+                    self.list_of_readers.append(Reader(reader_data))
+        except (FileNotFoundError, IOError):
+            self.list_of_readers = []
+
+    def add_reader(self, name, **kwargs):
+        # check if reader with name 'name' exist - if True raise ValueError
+        for reader in self.list_of_readers:
+            if reader.name == name:
+                raise ValueError("%s already exist" % name)
+
+        new_reader = Reader(name=name, **kwargs)
+        self.list_of_readers.append(new_reader)
+        with open('list_of_readers.json', 'a') as json_file:
+            json_file.writelines(new_reader.as_list())
+
+    def delete_reader(self, name) -> bool:
+        for idx, reader in enumerate(self.list_of_readers):
+            if reader.name == name:
+                self.list_of_readers.pop(idx)
+                self.dump_list_of_readers_to_json()
+                return True
+        return False
+
+    def dump_list_of_readers_to_json(self):
+        try:
+            with open('list_of_readers.json', 'w') as json_file:
+                for reader in self.list_of_readers:
+                    json_file.writelines(json.dumps(reader.as_list()))
+        except IOError:
+            print("json dumping error or json file privileges error")
+
 
 class List:
     """
