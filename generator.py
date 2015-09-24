@@ -23,6 +23,7 @@ class Reader:
     """
     A reader class stores base info about one person.
     """
+
     def __init__(self, name, lection=False, psalm=False, believers_pray=False, speech_number=0):
         if isinstance(name, str):
             self.name = name
@@ -54,6 +55,7 @@ class ListOfReaders:
     """
     Stores instances of Reader's class and allows to edit a list stored in json file.
     """
+
     def __init__(self):
         self.JSON_FILE = 'list_of_readers.json'
         try:
@@ -107,6 +109,7 @@ class Mess:
     :param hour: a string/datetime.time representation of mess hour
     :param is_second_lection: parameter inherited from Day class
     """
+
     def __init__(self, r_list, hour, is_second_lection):
         if isinstance(hour, str):
             split_hour = hour.split(':')
@@ -124,6 +127,8 @@ class Mess:
         self.first_lection = self.get_reader(r_list, 'lection')
         if self.is_second_lection:
             self.second_lection = self.get_reader(r_list, 'lection')
+        else:
+            self.second_lection = '---'
         self.psalm = self.get_reader(r_list, 'psalm')
         self.believers_pray = self.get_reader(r_list, 'believers_pray')
 
@@ -156,6 +161,7 @@ class Day:
     :param messes_hours: tuple with messes hours
     :param is_second_lection: optional parameter. Tells if the day has second lection.
     """
+
     def __init__(self, r_list, date, messes_hours, is_second_lection=True):
         if isinstance(r_list, ListOfReaders):
             pass
@@ -196,13 +202,14 @@ class ReadersTable:
     hour: str, hh:mm
     is_second_lection: bool, include only if the day has NOT second lection (False)
     """
+
     def __init__(self, days_and_hours):
         list_of_readers = ListOfReaders()
-        self.dates = []
+        self.day = []
         if isinstance(days_and_hours, tuple):
             for day_and_hours in days_and_hours:
                 day = Day(list_of_readers, *day_and_hours)
-                self.dates.append(day)
+                self.day.append(day)
 
 
 class HtmlReadersTable:
@@ -223,93 +230,14 @@ class HtmlReadersTable:
     hour: str, hh:mm
     is_second_lection: bool, include only if the day has NOT second lection (False)
     """
+
     def __init__(self, days_and_hours_tuple):
         self.readers_table = ReadersTable(days_and_hours=days_and_hours_tuple)
+        self.html_file = ''
         self.create_html_file()
 
     def create_html_file(self):
-        pass
-
-
-# ----------------------------------------------------------------------------------------------------------------------
-class List:
-    """
-    List of available people and their lection preferences. Each person has 3 fields describing state of relation
-    towards a lection and speech_number used to sorting before new reading list generation.
-    """
-
-    def __init__(self) -> None:
-        """Init the list with readers and generator's vars."""
-        self.list_ = []
-        self.html_file = ''
-        self.load_list()
-
-    def load_list(self):
-        """Loads data from 'list.json' and place it into 'self.list_'."""
-        try:
-            with open("list.json", 'r') as file:
-                self.list_ = json.loads(file.read())
-        except FileNotFoundError:
-            pass
-
-    def add_new_person(self, name, lection, psalm, believers_pray) -> bool:
-        """Add new person at the end of self.list_ and update 'list.json'."""
-        name_validity = isinstance(name, str)
-        lection_validity = isinstance(lection, bool)
-        psalm_validity = isinstance(psalm, bool)
-        believers_pray_validity = isinstance(believers_pray, bool)
-
-        if name_validity and lection_validity and psalm_validity and believers_pray_validity:
-            self.list_.append([name, lection, psalm, believers_pray, 0])
-            self.json_file_update()
-            return True
-        else:
-            return False
-
-    def delete_person(self, name) -> bool:
-        """
-        Removes person from the list.
-        Handling situation when exist more than one the same names is unnecessary - it doesn't have an influence
-        for second person.
-        """
-        for i in range(len(self.list_)):
-            if name in self.list_[i]:
-                del self.list_[i]
-                self.json_file_update()
-                return True
-
-        return False
-
-    def json_file_update(self) -> bool:
-        """Override file list.json with new self.list_."""
-        with open("list.json", 'w') as file:
-            file.write(json.dumps(self.list_))
-
-        return True
-
-    # html list generating methods
-    def sort_by_speeches(self):
-        """Sorts self.list_ by number of speeches."""
-        self.list_.sort(key=lambda person: person[Attribute.SPEECH_NUMBER])
-
-    def get_reader(self, lection_type) -> str:
-        """Return name of person whose speech_number is smallest and his relation towards lection 'type' is True.
-        :rtype:str
-        """
-        self.sort_by_speeches()
-        for person in self.list_:
-            if person[lection_type]:
-                person[Attribute.SPEECH_NUMBER] += 1
-                return person[Attribute.NAME]
-
-    def create_html_readers_list(self, days_hours) -> bool:
-        """
-        Creates html file with list of readers.
-
-        :param days_hours: structure: [["date1", if_second_lection, ["hour1", "hour2"]], (...),
-        ["date_n", if_second_lection, ["hour1", (...), "hour_n"]]
-        :return: True if successful, False if invalid input.
-        """
+        """Stores a template of html file and renders it with the data from readers_table."""
         self.html_file = ('<!DOCTYPE html>\n'
                           '<html>\n'
                           '<head>\n'
@@ -328,10 +256,8 @@ class List:
                           '</style>\n'
                           '</head>\n'
                           '<body>\n'
-                          '<h1>Lista czytających: {first} - {last}</h1>\n').format(first=days_hours[0][Attribute.DATE],
-                                                                                   last=days_hours[-1][Attribute.DATE])
-
-        self.html_file = ('{head}<table>\n'
+                          '<h1>Lista czytających: {first} - {last}</h1>\n'
+                          '<table>\n'
                           '<tr>\n'
                           ' <th>Data</th>\n'
                           ' <th>Godzina</th>\n'
@@ -339,69 +265,45 @@ class List:
                           ' <th>II czytanie</th>\n'
                           ' <th>Psalm</th>\n'
                           ' <th>Modlitwa wiernych</th>\n'
-                          '</tr>\n').format(head=self.html_file)
+                          '</tr>\n'
+                          ).format(first=self.readers_table.day[0].date,
+                                   last=self.readers_table.day[-1].date)
 
-        # main block of generator
-        for date in days_hours:
-            self.html_file = '{head}<tr>\n'.format(head=self.html_file)
+        # main generator's block
+        for day in self.readers_table.day:
+            self.html_file += '<tr>\n'
+            self.html_file += '<th rowspan="{no_messes}">{date}</th>\n'.format(no_messes=len(day.mess),
+                                                                               date=day.date)
 
-            # span the same number of rows as date[Attribute.HOURS] has various hours
-            self.html_file = '{head}<th rowspan="{no_hours}">{date}</th>\n'.format(head=self.html_file,
-                                                                                   no_hours=len(date[Attribute.HOURS]),
-                                                                                   date=date[Attribute.DATE])
+            # first mess need to be written manually because of started <tr> near date
+            mess = day.mess[0]
+            self.html_file += ('<th>{hour}</th>\n'
+                               ' <td>{lct_1}</td>\n'
+                               ' <td>{lct_2}</td>\n'
+                               ' <td>{ps}</td>\n'
+                               ' <td>{pray}</td>\n'
+                               '</tr>\n'
+                               ).format(hour=mess.hour, lct_1=mess.first_lecition,
+                                        lct_2=mess.second_lection, ps=mess.psalm,
+                                        pray=mess.believers_pray)
 
-            # first hour has to be written manually because of started <tr>
-            first_lection = self.get_reader(Attribute.LECTION)
+            # for left messes of day
+            for mess in day.mess[1:]:
+                self.html_file += ('<th>{hour}</th>\n'
+                                   ' <td>{lct_1}</td>\n'
+                                   ' <td>{lct_2}</td>\n'
+                                   ' <td>{ps}</td>\n'
+                                   ' <td>{pray}</td>\n'
+                                   '</tr>\n'
+                                   ).format(hour=mess.hour, lct_1=mess.first_lecition,
+                                            lct_2=mess.second_lection, ps=mess.psalm,
+                                            pray=mess.believers_pray)
+        self.html_file += ('</table>\n'
+                           '</body>\n'
+                           '</html>')
 
-            # if second lection will be read
-            if date[Attribute.IS_SECOND_LECTION]:
-                second_lection = self.get_reader(Attribute.LECTION)
-            else:
-                second_lection = '-'
+        html_file_name = '{first} - {last}.html'.format(first=self.readers_table.day[0].date,
+                                                        last=self.readers_table.day[-1].date)
 
-            psalm = self.get_reader(Attribute.PSALM)
-            believers_pray = self.get_reader(Attribute.BELIEVERS_PRAY)
-
-            self.html_file = ('{head}<th>{hour}</th>\n'
-                              ' <td>{lct_1}</td>\n'
-                              ' <td>{lct_2}</td>\n'
-                              ' <td>{ps}</td>\n'
-                              ' <td>{pray}</td>\n'
-                              '</tr>\n').format(head=self.html_file, hour=date[Attribute.HOURS][0],
-                                                lct_1=first_lection, lct_2=second_lection, ps=psalm,
-                                                pray=believers_pray)
-
-            for i in range(1, len(date[Attribute.HOURS])):
-                first_lection = self.get_reader(Attribute.LECTION)
-
-                # if second lection will be read
-                if date[Attribute.IS_SECOND_LECTION]:
-                    second_lection = self.get_reader(Attribute.LECTION)
-                else:
-                    second_lection = '-'
-
-                psalm = self.get_reader(Attribute.PSALM)
-                believers_pray = self.get_reader(Attribute.BELIEVERS_PRAY)
-
-                self.html_file = ('{head}<tr>\n'
-                                  ' <th>{hour}</th>\n'
-                                  ' <td>{lct_1}</td>\n'
-                                  ' <td>{lct_2}</td>\n'
-                                  ' <td>{ps}</td>\n'
-                                  ' <td>{pray}</td>\n'
-                                  '</tr>\n').format(head=self.html_file, hour=date[Attribute.HOURS][i],
-                                                    lct_1=first_lection, lct_2=second_lection, ps=psalm,
-                                                    pray=believers_pray)
-
-        self.html_file = ('{head}</table>\n'
-                          '</body>\n'
-                          '</html>').format(head=self.html_file)
-
-        first_date_html_file = '{first} - {last}'.format(first=days_hours[0][Attribute.DATE][0:5],
-                                                         last=days_hours[-1][Attribute.DATE][0:5])
-
-        first_date_html_file = '{head}.html'.format(head=first_date_html_file)
-        with open(first_date_html_file, 'w') as file:
+        with open(html_file_name, 'w') as file:
             file.write(self.html_file)
-
-        return True
