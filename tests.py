@@ -1,7 +1,14 @@
+#!/usr/bin/python3
+# -*- coding: UTF-8 -*-
 import generator
 
 
 def func():
+    """
+    If u run the program first time - uncomment this block below.
+    After first run you have to make this block commented again.
+    Otherwise generator raise ValueError because of repetitive names.
+    """
     '''lst = generator.ListOfReaders()
     lst.add_reader("Osoba Pierwsza", lection=True)
     lst.add_reader("Osoba Druga", lection=True)
