@@ -92,6 +92,10 @@ class ListOfReaders:
         except IOError:
             print("json dumping error or json file privileges error")
 
+    def sort_by_speeches(self):
+        """Sorts list_of_readers by speech number."""
+        self.list_of_readers.sort(key=lambda reader: reader.speech_number)
+
 
 class Mess:
     """
