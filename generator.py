@@ -106,6 +106,10 @@ class Mess:
         if isinstance(hour, str):
             split_hour = hour.split(':')
             self.hour = datetime.time(*split_hour)
+        elif isinstance(hour, datetime.time):
+            self.hour = hour
+        else:
+            raise TypeError("invalid hour")
 
         if isinstance(second_lection, bool):
             self.second_lection = second_lection
