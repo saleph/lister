@@ -116,10 +116,35 @@ class Mess:
         """Checks validation of the hour parameter."""
         if isinstance(hour, str):
             split_hour = hour.split(':')
-            if split_hour[0] in range(24) and split_hour[1] in range(60):
-                return True
+            if int(split_hour[0]) in range(24):
+                if int(split_hour[1]) in range(60):
+                    return True
+                else:
+                    return False
             else:
                 return False
+
+
+class Day:
+    """
+    Stores info about day (date and messes).
+    """
+    def __init__(self, date, messes):
+        if self.date_is_valid(date):
+            self.date = date
+        else:
+            raise ValueError("invalid date")
+
+        self.messes_list = []
+        if isinstance(messes, list):
+            for mess in messes:
+                if isinstance(mess, str):
+                    self.messes_list.append(Mess(hour=mess))
+                elif isinstance(mess, list):
+                    self.messes_list.append(Mess(hour=mess[0], second_lection=mess[1]))
+        else:
+            raise TypeError("messes parameter has to be list")
+
 
 
 class List:
