@@ -7,6 +7,9 @@ import datetime
 class Reader:
     """
     A reader class stores base info about one person.
+    :param name: str
+    :param lection, psalm, believers_pray: bool. Describe relation of reader towards lection function.
+    :param speech_number: ind. Number of speeches
     """
 
     def __init__(self, name, lection=False, psalm=False, believers_pray=False, speech_number=0):
@@ -59,8 +62,17 @@ class ListOfReaders:
 
         new_reader = Reader(name=name, **kwargs)
         self.list_of_readers.append(new_reader)
+        self.reset_all_number_of_speeches()
         with open(self.JSON_FILE, 'a') as json_file:
             json_file.writelines(new_reader.as_list())
+
+    def reset_all_number_of_speeches(self):
+        for reader in self.list_of_readers:
+            # if speech_number is greater than 0, speech_number = 1
+            if reader.speech_number:
+                reader.speech_number = 1
+            else:
+                reader.speech_number = 0
 
     def delete_reader(self, name) -> bool:
         """Deletes reader from list_of_readers and from the json file."""
@@ -123,14 +135,17 @@ class Mess:
         if lection_type == 'lection':
             for reader in r_list:
                 if reader.lection:
+                    reader.speech_number += 1
                     return reader.name
         elif lection_type == 'psalm':
             for reader in r_list:
                 if reader.psalm:
+                    reader.speech_number += 1
                     return reader.name
         elif lection_type == 'believers_pray':
             for reader in r_list:
                 if reader.believers_pray:
+                    reader.speech_number += 1
                     return reader.name
         else:
             raise ValueError("lection_type doesn't fit to any case")
