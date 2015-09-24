@@ -109,7 +109,7 @@ class Mess:
         elif isinstance(hour, datetime.time):
             self.hour = hour
         else:
-            raise TypeError("invalid hour")
+            raise TypeError("hour has to be string or datetime.time")
 
         if isinstance(second_lection, bool):
             self.second_lection = second_lection
@@ -120,20 +120,24 @@ class Mess:
 class Day:
     """
     Stores info about day (date and messes).
+    :param date: yyyy.mm.dd
     """
     def __init__(self, date, messes):
-        if self.date_is_valid(date):
+        if isinstance(date, str):
+            split_date = date.split('.')
+            self.date = datetime.date(*split_date)
+        elif isinstance(date, datetime.date):
             self.date = date
         else:
-            raise ValueError("invalid date")
+            raise TypeError("date has to be a string or datetime.date")
 
         self.messes_list = []
         if isinstance(messes, list):
             for mess in messes:
                 if isinstance(mess, str):
-                    self.messes_list.append(Mess(hour=mess))
+                    self.messes_list.append(Mess(mess))
                 elif isinstance(mess, list):
-                    self.messes_list.append(Mess(hour=mess[0], second_lection=mess[1]))
+                    self.messes_list.append(Mess(*mess))
         else:
             raise TypeError("messes parameter has to be list")
 
