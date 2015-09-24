@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: UTF-8 -*-
 import json
+import datetime
 
 
 class Attribute:
@@ -102,27 +103,14 @@ class Mess:
     Stores info about mess.
     """
     def __init__(self, hour, second_lection=True):
-        if self.hour_is_valid(hour):
-            self.hour = hour
-        else:
-            raise ValueError("invalid parameter hour")
+        if isinstance(hour, str):
+            split_hour = hour.split(':')
+            self.hour = datetime.time(*split_hour)
 
         if isinstance(second_lection, bool):
             self.second_lection = second_lection
         else:
             raise TypeError("second_lection has to be a boolean")
-
-    def hour_is_valid(self, hour) -> bool:
-        """Checks validation of the hour parameter."""
-        if isinstance(hour, str):
-            split_hour = hour.split(':')
-            if int(split_hour[0]) in range(24):
-                if int(split_hour[1]) in range(60):
-                    return True
-                else:
-                    return False
-            else:
-                return False
 
 
 class Day:
@@ -146,7 +134,7 @@ class Day:
             raise TypeError("messes parameter has to be list")
 
 
-
+# ----------------------------------------------------------------------------------------------------------------------
 class List:
     """
     List of available people and their lection preferences. Each person has 3 fields describing state of relation
