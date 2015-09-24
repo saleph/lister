@@ -205,6 +205,32 @@ class ReadersTable:
                 self.dates.append(day)
 
 
+class HtmlReadersTable:
+    """
+    Stores html file template and renders final readers' table.
+
+    :param days_and_hours_tuple: a two dimension tuple. Syntax:
+        (
+            (date1, (hour1, hour2,...), is_second_lection),
+            (date2, (hour1, hour2,...)),
+            ("2015.05.29", ("11:00", "18:00"), False),
+            ("2015.01.18", ("7:00",)) # second lection will be included
+            ("2015.01.18", ("7:00", "17:00", "19:37"), True) # the same here
+            ...
+        )
+
+    date: str, yyyy.mm.dd
+    hour: str, hh:mm
+    is_second_lection: bool, include only if the day has NOT second lection (False)
+    """
+    def __init__(self, days_and_hours_tuple):
+        self.readers_table = ReadersTable(days_and_hours=days_and_hours_tuple)
+        self.create_html_file()
+
+    def create_html_file(self):
+        pass
+
+
 # ----------------------------------------------------------------------------------------------------------------------
 class List:
     """
