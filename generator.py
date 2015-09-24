@@ -48,7 +48,6 @@ class ListOfReaders:
         self.JSON_FILE = 'list_of_readers.json'
         self.list_of_readers = []
         try:
-            two_dimension_list = []
             with open(self.JSON_FILE) as json_file:
                 two_dimension_list = json.loads(json_file.read())
 
@@ -301,7 +300,7 @@ class HtmlReadersTable:
                                ' <td>{ps}</td>\n'
                                ' <td>{pray}</td>\n'
                                '</tr>\n'
-                               ).format(hour=mess.hour, lct_1=mess.first_lection,
+                               ).format(hour=mess.hour.strftime('%H:%M'), lct_1=mess.first_lection,
                                         lct_2=mess.second_lection, ps=mess.psalm,
                                         pray=mess.believers_pray)
 
@@ -313,7 +312,7 @@ class HtmlReadersTable:
                                    ' <td>{ps}</td>\n'
                                    ' <td>{pray}</td>\n'
                                    '</tr>\n'
-                                   ).format(hour=mess.hour, lct_1=mess.first_lection,
+                                   ).format(hour=mess.hour.strftime('%H:%M'), lct_1=mess.first_lection,
                                             lct_2=mess.second_lection, ps=mess.psalm,
                                             pray=mess.believers_pray)
         self.html_file += ('</table>\n'

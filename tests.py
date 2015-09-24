@@ -2,8 +2,8 @@ import generator
 
 
 def func():
-    lst = generator.ListOfReaders()
-    '''lst:add_reader("Osoba Pierwsza", lection=True)
+    '''lst = generator.ListOfReaders()
+    lst.add_reader("Osoba Pierwsza", lection=True)
     lst.add_reader("Osoba Druga", lection=True)
     lst.add_reader("Osoba Trzecia", psalm=True)
     lst.add_reader("Osoba czwarta", believers_pray=True)
