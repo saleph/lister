@@ -104,9 +104,10 @@ class Mess:
 
     :param r_list: an instance of ListOfReaders
         (preventing the multiple reads from file in Mess.get_reader())
-    :param hour: a string representation of mess hour
+    :param hour: a string/datetime.time representation of mess hour
+    :param is_second_lection: parameter inherited from Day class
     """
-    def __init__(self, r_list, hour, second_lection=True):
+    def __init__(self, r_list, hour, is_second_lection):
         if isinstance(hour, str):
             split_hour = hour.split(':')
             self.hour = datetime.time(*split_hour)
@@ -115,8 +116,8 @@ class Mess:
         else:
             raise TypeError("hour has to be string or datetime.time")
 
-        if isinstance(second_lection, bool):
-            self.is_second_lection = second_lection
+        if isinstance(is_second_lection, bool):
+            self.is_second_lection = is_second_lection
         else:
             raise TypeError("second_lection has to be a boolean")
 
@@ -127,7 +128,7 @@ class Mess:
         self.believers_pray = self.get_reader(r_list, 'believers_pray')
 
     @staticmethod
-    def get_reader(r_list, lection_type):
+    def get_reader(r_list, lection_type) -> str:
         r_list.sort_by_speeches()
         if lection_type == 'lection':
             for reader in r_list:
@@ -156,6 +157,11 @@ class Day:
     :param is_second_lection: optional parameter
     """
     def __init__(self, r_list, date, messes_hours, is_second_lection=True):
+        if isinstance(r_list, ListOfReaders):
+            pass
+        else:
+            raise TypeError("r_list parameter has to be instance of ListOfReaders")
+
         if isinstance(date, str):
             split_date = date.split('.')
             self.date = datetime.date(*split_date)
@@ -164,26 +170,30 @@ class Day:
         else:
             raise TypeError("date has to be a string or datetime.date")
 
-        self.messes_hours_list = []
+        self.mess = []
         if isinstance(messes_hours, tuple):
-            for mess in messes_hours:
-                if isinstance(mess, str):
-                    self.messes_hours_list.append(Mess(r_list, mess))
-                elif isinstance(mess, tuple):
-                    self.messes_hours_list.append(Mess(r_list, *mess))
+            for mess_hour in messes_hours:
+                self.mess.append(Mess(r_list, mess_hour, is_second_lection))
         else:
-            raise TypeError("messes_hours parameter has to be list")
+            raise TypeError("messes_hours parameter has to be tuple")
 
 
 class ReadersTable:
+    """
+    Stores a list with following Days.
+
+    :param days_and_hours: a two dimension tuple. Syntax:
+        (
+            (date, (hour1, hour2,...), is_second_lection),
+            ...
+        )
+    """
     def __init__(self, days_and_hours):
         list_of_readers = ListOfReaders()
         self.dates = []
         if isinstance(days_and_hours, tuple):
             for day_and_hours in days_and_hours:
                 day = Day(list_of_readers, *day_and_hours)
-
-
 
 
 # ----------------------------------------------------------------------------------------------------------------------
