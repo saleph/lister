@@ -102,7 +102,7 @@ class Mess:
     """
     Stores info about mess.
     """
-    def __init__(self, hour, second_lection=True):
+    def __init__(self, r_list, hour, second_lection=True):
         if isinstance(hour, str):
             split_hour = hour.split(':')
             self.hour = datetime.time(*split_hour)
@@ -112,9 +112,33 @@ class Mess:
             raise TypeError("hour has to be string or datetime.time")
 
         if isinstance(second_lection, bool):
-            self.second_lection = second_lection
+            self.is_second_lection = second_lection
         else:
             raise TypeError("second_lection has to be a boolean")
+
+        self.first_lection = self.get_reader(r_list, 'lection')
+        if self.is_second_lection:
+            self.second_lection = self.get_reader(r_list, 'lection')
+        self.psalm = self.get_reader(r_list, 'psalm')
+        self.believers_pray = self.get_reader(r_list, 'believers_pray')
+
+    @staticmethod
+    def get_reader(r_list, lection_type):
+        r_list.sort_by_speeches()
+        if lection_type == 'lection':
+            for reader in r_list:
+                if reader.lection:
+                    return reader.name
+        elif lection_type == 'psalm':
+            for reader in r_list:
+                if reader.psalm:
+                    return reader.name
+        elif lection_type == 'believers_pray':
+            for reader in r_list:
+                if reader.believers_pray:
+                    return reader.name
+        else:
+            raise ValueError("lection_type doesn't fit to any case")
 
 
 class Day:
@@ -122,7 +146,7 @@ class Day:
     Stores info about day (date and messes).
     :param date: yyyy.mm.dd
     """
-    def __init__(self, date, messes):
+    def __init__(self, r_list, date, messes):
         if isinstance(date, str):
             split_date = date.split('.')
             self.date = datetime.date(*split_date)
@@ -135,9 +159,9 @@ class Day:
         if isinstance(messes, list):
             for mess in messes:
                 if isinstance(mess, str):
-                    self.messes_list.append(Mess(mess))
+                    self.messes_list.append(Mess(r_list, mess))
                 elif isinstance(mess, list):
-                    self.messes_list.append(Mess(*mess))
+                    self.messes_list.append(Mess(r_list, *mess))
         else:
             raise TypeError("messes parameter has to be list")
 
