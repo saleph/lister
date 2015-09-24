@@ -67,8 +67,11 @@ class ListOfReaders:
             json_file.writelines(new_reader.as_list())
 
     def reset_all_number_of_speeches(self):
+        """
+        Resets speech number of every reader. But if the number is greater than 1,
+        it will be 1. Else it will be 0.
+        """
         for reader in self.list_of_readers:
-            # if speech_number is greater than 0, speech_number = 1
             if reader.speech_number:
                 reader.speech_number = 1
             else:
@@ -131,6 +134,10 @@ class Mess:
 
     @staticmethod
     def get_reader(r_list, lection_type) -> str:
+        """
+        Returns reader, whose lection_type is True and
+        his speech_number is least of all.
+        """
         r_list.sort_by_speeches()
         if lection_type == 'lection':
             for reader in r_list:
@@ -169,6 +176,7 @@ class Day:
             raise TypeError("r_list parameter has to be instance of ListOfReaders")
 
         if isinstance(date, str):
+            # make string date datetime.date
             split_date = date.split('.')
             self.date = datetime.date(*split_date)
         elif isinstance(date, datetime.date):
@@ -302,7 +310,8 @@ class HtmlReadersTable:
                            '</body>\n'
                            '</html>')
 
-        html_file_name = '{first} - {last}.html'.format(first=self.readers_table.day[0].date,
+        # html file name contains first and last date
+        html_file_name = '{first} -> {last}.html'.format(first=self.readers_table.day[0].date,
                                                         last=self.readers_table.day[-1].date)
 
         with open(html_file_name, 'w') as file:
