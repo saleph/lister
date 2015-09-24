@@ -46,12 +46,16 @@ class ListOfReaders:
 
     def __init__(self):
         self.JSON_FILE = 'list_of_readers.json'
+        self.list_of_readers = []
         try:
+            two_dimension_list = []
             with open(self.JSON_FILE) as json_file:
-                for reader_data in json_file.readlines():
-                    self.list_of_readers.append(Reader(reader_data))
+                two_dimension_list = json.loads(json_file.read())
+
+            for reader_data in two_dimension_list:
+                self.list_of_readers.append(Reader(*reader_data))
         except (FileNotFoundError, IOError):
-            self.list_of_readers = []
+            pass
 
     def add_reader(self, name, **kwargs):
         """Adds reader to the list_of_reader and to the json file."""
@@ -63,8 +67,7 @@ class ListOfReaders:
         new_reader = Reader(name=name, **kwargs)
         self.list_of_readers.append(new_reader)
         self.reset_all_number_of_speeches()
-        with open(self.JSON_FILE, 'a') as json_file:
-            json_file.writelines(new_reader.as_list())
+        self.dump_list_of_readers_to_json()
 
     def reset_all_number_of_speeches(self):
         """
@@ -89,9 +92,12 @@ class ListOfReaders:
     def dump_list_of_readers_to_json(self):
         """Updates the json file after reader deletion."""
         try:
+            two_dimension_list = []
+            for reader in self.list_of_readers:
+                two_dimension_list.append(reader.as_list())
+
             with open(self.JSON_FILE, 'w') as json_file:
-                for reader in self.list_of_readers:
-                    json_file.writelines(json.dumps(reader.as_list()))
+                    json_file.write(json.dumps(two_dimension_list))
         except IOError:
             print("json dumping error or json file privileges error")
 
@@ -113,6 +119,8 @@ class Mess:
     def __init__(self, r_list, hour, is_second_lection):
         if isinstance(hour, str):
             split_hour = hour.split(':')
+            for idx, split in enumerate(split_hour):
+                split_hour[idx] = int(split)
             self.hour = datetime.time(*split_hour)
         elif isinstance(hour, datetime.time):
             self.hour = hour
@@ -140,17 +148,17 @@ class Mess:
         """
         r_list.sort_by_speeches()
         if lection_type == 'lection':
-            for reader in r_list:
+            for reader in r_list.list_of_readers:
                 if reader.lection:
                     reader.speech_number += 1
                     return reader.name
         elif lection_type == 'psalm':
-            for reader in r_list:
+            for reader in r_list.list_of_readers:
                 if reader.psalm:
                     reader.speech_number += 1
                     return reader.name
         elif lection_type == 'believers_pray':
-            for reader in r_list:
+            for reader in r_list.list_of_readers:
                 if reader.believers_pray:
                     reader.speech_number += 1
                     return reader.name
@@ -178,6 +186,8 @@ class Day:
         if isinstance(date, str):
             # make string date datetime.date
             split_date = date.split('.')
+            for idx, split in enumerate(split_date):
+                split_date[idx] = int(split)
             self.date = datetime.date(*split_date)
         elif isinstance(date, datetime.date):
             self.date = date
@@ -291,7 +301,7 @@ class HtmlReadersTable:
                                ' <td>{ps}</td>\n'
                                ' <td>{pray}</td>\n'
                                '</tr>\n'
-                               ).format(hour=mess.hour, lct_1=mess.first_lecition,
+                               ).format(hour=mess.hour, lct_1=mess.first_lection,
                                         lct_2=mess.second_lection, ps=mess.psalm,
                                         pray=mess.believers_pray)
 
@@ -303,7 +313,7 @@ class HtmlReadersTable:
                                    ' <td>{ps}</td>\n'
                                    ' <td>{pray}</td>\n'
                                    '</tr>\n'
-                                   ).format(hour=mess.hour, lct_1=mess.first_lecition,
+                                   ).format(hour=mess.hour, lct_1=mess.first_lection,
                                             lct_2=mess.second_lection, ps=mess.psalm,
                                             pray=mess.believers_pray)
         self.html_file += ('</table>\n'
