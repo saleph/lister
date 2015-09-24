@@ -101,6 +101,10 @@ class ListOfReaders:
 class Mess:
     """
     Stores info about mess.
+
+    :param r_list: an instance of ListOfReaders
+        (preventing the multiple reads from file in Mess.get_reader())
+    :param hour: a string representation of mess hour
     """
     def __init__(self, r_list, hour, second_lection=True):
         if isinstance(hour, str):
@@ -143,10 +147,15 @@ class Mess:
 
 class Day:
     """
-    Stores info about day (date and messes).
+    Stores info about day (date and messes_hours).
+
+    :param r_list: an instance of ListOfReaders
+        (preventing the multiple reads from file in Mess.get_reader())
     :param date: yyyy.mm.dd
+    :param messes_hours: tuple with messes hours
+    :param is_second_lection: optional parameter
     """
-    def __init__(self, r_list, date, messes):
+    def __init__(self, r_list, date, messes_hours, is_second_lection=True):
         if isinstance(date, str):
             split_date = date.split('.')
             self.date = datetime.date(*split_date)
@@ -155,15 +164,26 @@ class Day:
         else:
             raise TypeError("date has to be a string or datetime.date")
 
-        self.messes_list = []
-        if isinstance(messes, list):
-            for mess in messes:
+        self.messes_hours_list = []
+        if isinstance(messes_hours, tuple):
+            for mess in messes_hours:
                 if isinstance(mess, str):
-                    self.messes_list.append(Mess(r_list, mess))
-                elif isinstance(mess, list):
-                    self.messes_list.append(Mess(r_list, *mess))
+                    self.messes_hours_list.append(Mess(r_list, mess))
+                elif isinstance(mess, tuple):
+                    self.messes_hours_list.append(Mess(r_list, *mess))
         else:
-            raise TypeError("messes parameter has to be list")
+            raise TypeError("messes_hours parameter has to be list")
+
+
+class ReadersTable:
+    def __init__(self, days_and_hours):
+        list_of_readers = ListOfReaders()
+        self.dates = []
+        if isinstance(days_and_hours, tuple):
+            for day_and_hours in days_and_hours:
+                day = Day(list_of_readers, *day_and_hours)
+
+
 
 
 # ----------------------------------------------------------------------------------------------------------------------
