@@ -154,7 +154,7 @@ class Day:
         (preventing the multiple reads from file in Mess.get_reader())
     :param date: yyyy.mm.dd
     :param messes_hours: tuple with messes hours
-    :param is_second_lection: optional parameter
+    :param is_second_lection: optional parameter. Tells if the day has second lection.
     """
     def __init__(self, r_list, date, messes_hours, is_second_lection=True):
         if isinstance(r_list, ListOfReaders):
@@ -184,9 +184,17 @@ class ReadersTable:
 
     :param days_and_hours: a two dimension tuple. Syntax:
         (
-            (date, (hour1, hour2,...), is_second_lection),
+            (date1, (hour1, hour2,...), is_second_lection),
+            (date2, (hour1, hour2,...)),
+            ("2015.05.29", ("11:00", "18:00"), False),
+            ("2015.01.18", ("7:00",)) # second lection will be included
+            ("2015.01.18", ("7:00", "17:00", "19:37"), True) # the same here
             ...
         )
+
+    date: str, yyyy.mm.dd
+    hour: str, hh:mm
+    is_second_lection: bool, include only if the day has NOT second lection (False)
     """
     def __init__(self, days_and_hours):
         list_of_readers = ListOfReaders()
@@ -194,6 +202,7 @@ class ReadersTable:
         if isinstance(days_and_hours, tuple):
             for day_and_hours in days_and_hours:
                 day = Day(list_of_readers, *day_and_hours)
+                self.dates.append(day)
 
 
 # ----------------------------------------------------------------------------------------------------------------------
