@@ -4,21 +4,6 @@ import json
 import datetime
 
 
-class Attribute:
-    """Stores index of an attribute used in list of readers and dates."""
-    # List.list
-    NAME = 0
-    LECTION = 1
-    PSALM = 2
-    BELIEVERS_PRAY = 3
-    SPEECH_NUMBER = 4
-
-    # dates_and_hours
-    DATE = 0
-    IS_SECOND_LECTION = 1
-    HOURS = 2
-
-
 class Reader:
     """
     A reader class stores base info about one person.
