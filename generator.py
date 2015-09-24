@@ -19,6 +19,9 @@ class Attribute:
 
 
 class Reader:
+    """
+    A reader class stores base info about one person.
+    """
     def __init__(self, name, lection=False, psalm=False, believers_pray=False, speech_number=0):
         if isinstance(name, str):
             self.name = name
@@ -42,10 +45,14 @@ class Reader:
             raise TypeError("speech_number has to be an integer")
 
     def as_list(self):
+        """Returns reader's data as list. Used in parsing json file."""
         return [self.name, self.lection, self.psalm, self.believers_pray, self.speech_number]
 
 
 class ListOfReaders:
+    """
+    Stores instances of Reader's class and allows to edit a list stored in json file.
+    """
     def __init__(self):
         self.JSON_FILE = 'list_of_readers.json'
         try:
@@ -56,6 +63,7 @@ class ListOfReaders:
             self.list_of_readers = []
 
     def add_reader(self, name, **kwargs):
+        """Adds reader to the list_of_reader and to the json file."""
         # check if reader with name 'name' exist - if True raise ValueError
         for reader in self.list_of_readers:
             if reader.name == name:
@@ -67,6 +75,7 @@ class ListOfReaders:
             json_file.writelines(new_reader.as_list())
 
     def delete_reader(self, name) -> bool:
+        """Deletes reader from list_of_readers and from the json file."""
         for idx, reader in enumerate(self.list_of_readers):
             if reader.name == name:
                 self.list_of_readers.pop(idx)
@@ -75,6 +84,7 @@ class ListOfReaders:
         return False
 
     def dump_list_of_readers_to_json(self):
+        """Updates the json file after reader deletion."""
         try:
             with open(self.JSON_FILE, 'w') as json_file:
                 for reader in self.list_of_readers:
@@ -84,6 +94,9 @@ class ListOfReaders:
 
 
 class Mess:
+    """
+    Stores info about mess.
+    """
     def __init__(self, hour, second_lection=True):
         if self.hour_is_valid(hour):
             self.hour = hour
@@ -95,7 +108,8 @@ class Mess:
         else:
             raise TypeError("second_lection has to be a boolean")
 
-    def hour_is_valid(self, hour):
+    def hour_is_valid(self, hour) -> bool:
+        """Checks validation of the hour parameter."""
         if isinstance(hour, str):
             split_hour = hour.split(':')
             if split_hour[0] in range(24) and split_hour[1] in range(60):
