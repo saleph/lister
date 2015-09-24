@@ -2,22 +2,22 @@ import generator
 
 
 def func():
-    lst = generator.List()
-    lst.add_new_person("Osoba Pierwsza", True, False, False)
-    lst.add_new_person("Osoba Druga", True, False, False)
-    lst.add_new_person("Osoba Trzecia", False, True, False)
-    lst.add_new_person("Osoba czwarta", False, False, True)
-    lst.add_new_person("Osoba Piąta", True, True, False)
-    lst.add_new_person("Osoba Szósta", True, False, True)
+    lst = generator.ListOfReaders()
+    '''lst:add_reader("Osoba Pierwsza", lection=True)
+    lst.add_reader("Osoba Druga", lection=True)
+    lst.add_reader("Osoba Trzecia", psalm=True)
+    lst.add_reader("Osoba czwarta", believers_pray=True)
+    lst.add_reader("Osoba Piąta", lection=True, psalm=True)
+    lst.add_reader("Osoba Szósta", lection=True, believers_pray=True)'''
 
-    d_a_h = [
-        ["21.02.2011", True, ["9.00", "11.00", "12.00"]],
-        ["23.02.2011", True, ["9.00", "11.00", "12.00"]],
-        ["25.02.2011", True, ["9.00", "11.00", "12.00"]],
-        ["28.02.2011", False, ["9.00", "11.00"]],
-        ["40.02.2011", True, ["9.00", "11.00", "12.00", "16.00"]]
-    ]
-    lst.create_html_readers_list(d_a_h)
+    d_a_h = (
+        ("2011.5.2", ("9:00", "11:00", "12:00")),
+        ("2011.6.3", ("9:00", "11:00", "12:00")),
+        ("2011.7.4", ("9:00", "11:00", "12:00"), False),
+        ("2011.8.12", ("9:00", "11:00")),
+        ("2011.12.21", ("9:00", "11:00", "12:00", "16:00"))
+    )
+    generator.HtmlReadersTable(d_a_h)
 
 
 if __name__ == "__main__":
