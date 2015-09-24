@@ -23,14 +23,14 @@ class Reader:
         if isinstance(name, str):
             self.name = name
         else:
-            raise ValueError("name has to be a string")
+            raise TypeError("name has to be a string")
 
         if isinstance(lection, bool) and isinstance(psalm, bool) and isinstance(believers_pray, bool):
             self.lection = lection
             self.psalm = psalm
             self.believers_pray = believers_pray
         else:
-            raise ValueError("lection/psalm/believers_pray field has to be a boolean")
+            raise TypeError("lection/psalm/believers_pray field has to be a boolean")
 
         # if every boolean field is False, raise ValueError
         if not (lection or psalm or believers_pray):
@@ -39,7 +39,7 @@ class Reader:
         if isinstance(speech_number, int):
             self.speech_number = speech_number
         else:
-            raise ValueError("speech_number has to be an integer")
+            raise TypeError("speech_number has to be an integer")
 
     def as_list(self):
         return [self.name, self.lection, self.psalm, self.believers_pray, self.speech_number]
@@ -47,8 +47,9 @@ class Reader:
 
 class ListOfReaders:
     def __init__(self):
+        self.JSON_FILE = 'list_of_readers.json'
         try:
-            with open('list_of_readers.json') as json_file:
+            with open(self.JSON_FILE) as json_file:
                 for reader_data in json_file.readlines():
                     self.list_of_readers.append(Reader(reader_data))
         except (FileNotFoundError, IOError):
@@ -62,7 +63,7 @@ class ListOfReaders:
 
         new_reader = Reader(name=name, **kwargs)
         self.list_of_readers.append(new_reader)
-        with open('list_of_readers.json', 'a') as json_file:
+        with open(self.JSON_FILE, 'a') as json_file:
             json_file.writelines(new_reader.as_list())
 
     def delete_reader(self, name) -> bool:
@@ -75,11 +76,32 @@ class ListOfReaders:
 
     def dump_list_of_readers_to_json(self):
         try:
-            with open('list_of_readers.json', 'w') as json_file:
+            with open(self.JSON_FILE, 'w') as json_file:
                 for reader in self.list_of_readers:
                     json_file.writelines(json.dumps(reader.as_list()))
         except IOError:
             print("json dumping error or json file privileges error")
+
+
+class Mess:
+    def __init__(self, hour, second_lection=True):
+        if self.hour_is_valid(hour):
+            self.hour = hour
+        else:
+            raise ValueError("invalid parameter hour")
+
+        if isinstance(second_lection, bool):
+            self.second_lection = second_lection
+        else:
+            raise TypeError("second_lection has to be a boolean")
+
+    def hour_is_valid(self, hour):
+        if isinstance(hour, str):
+            split_hour = hour.split(':')
+            if split_hour[0] in range(24) and split_hour[1] in range(60):
+                return True
+            else:
+                return False
 
 
 class List:
