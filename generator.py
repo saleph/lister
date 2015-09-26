@@ -96,7 +96,7 @@ class ListOfReaders:
                 two_dimension_list.append(reader.as_list())
 
             with open(self.JSON_FILE, 'w') as json_file:
-                    json_file.write(json.dumps(two_dimension_list))
+                json_file.write(json.dumps(two_dimension_list))
         except IOError:
             print("json dumping error or json file privileges error")
 
@@ -321,7 +321,7 @@ class HtmlReadersTable:
 
         # html file name contains first and last date
         html_file_name = '{first} -> {last}.html'.format(first=self.readers_table.day[0].date,
-                                                        last=self.readers_table.day[-1].date)
+                                                         last=self.readers_table.day[-1].date)
 
         with open(html_file_name, 'w') as file:
             file.write(self.html_file)
