@@ -105,5 +105,9 @@ class Mess(models.Model):
     psalm = models.ForeignKey(Reader, related_name='psalm_users')
     believers_pray = models.ForeignKey(Reader, related_name='believers_pray_users')
 
+
+    class Meta:
+        verbose_name_plural = 'messes'
+
     def __str__(self):
         return '{date} {hour}'.format(date=self.day.date, hour=self.hour)
