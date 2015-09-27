@@ -1,0 +1,6 @@
+ADMIN PAGE
+- during new mess addition and setting up
+	readers - needed validation if the reader
+	has equivalent type of lection (wants
+	in Reader model) set as True
+
