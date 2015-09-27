@@ -96,7 +96,7 @@ class Mess(models.Model):
             the lection
     """
     day = models.ForeignKey(Day)
-    hour = models.TimeField('hour', default=datetime.time(9,0))
+    hour = models.TimeField('hour', default=datetime.time(9, 0))
     first_lection = models.ForeignKey(Reader, related_name='first_lection_users')
 
     # NOTICE! If day.is_second_lection == False
@@ -106,5 +106,4 @@ class Mess(models.Model):
     believers_pray = models.ForeignKey(Reader, related_name='believers_pray_users')
 
     def __str__(self):
-        return '{date} {hour}'.format(date=str(self.day.date),
-                                      hour=str(self.hour))
+        return '{date} {hour}'.format(date=self.day.date, hour=self.hour)
