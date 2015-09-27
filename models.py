@@ -105,7 +105,6 @@ class Mess(models.Model):
     psalm = models.ForeignKey(Reader, related_name='psalm_users')
     believers_pray = models.ForeignKey(Reader, related_name='believers_pray_users')
 
-
     class Meta:
         verbose_name_plural = 'messes'
 
