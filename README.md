@@ -1,6 +1,7 @@
 # lister
 Lister is written in Python3. It generates table of readers.
 Here is an example output page ready to print: http://i.imgur.com/4cgqJy4.png
+*There is also available lister's implementation in django in [django_app](https://github.com/saleph/lister/tree/django_app) branch.*
 
 How to get started?
 -------------------
