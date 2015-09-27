@@ -1,6 +1,7 @@
-# Some my files to tests
-*.json
-*.html
+# Migration's files
+migrations/*
+
+# PyCharm stuff
 .idea/*
 
 # Byte-compiled / optimized / DLL files
