@@ -1,3 +1,4 @@
+import datetime
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -19,13 +20,13 @@ class Reader(models.Model):
         owner: foreign key; tells which user add the reader
     """
     name = models.CharField(max_length=50)
-    wants_lection = models.BooleanField
-    wants_psalm = models.BooleanField
-    wants_believers_pray = models.BooleanField
+    wants_lection = models.BooleanField(default=False)
+    wants_psalm = models.BooleanField(default=False)
+    wants_believers_pray = models.BooleanField(default=False)
     speech_number = models.PositiveIntegerField(default=0)
     owner = models.ForeignKey(User)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
 
     def reset_speech_number(self):
@@ -39,6 +40,18 @@ class Reader(models.Model):
             self.speech_number = 1
         else:
             self.speech_number = 0
+
+    def at_least_one_wants_is_true(self) -> bool:
+        """
+        Returns True if at least one of the wants is True.
+        Else returns False.
+        """
+        if (self.wants_lection or
+                self.wants_psalm or
+                self.wants_believers_pray):
+            return True
+        else:
+            return False
 
 
 class Day(models.Model):
@@ -58,7 +71,7 @@ class Day(models.Model):
 
         owner: user's foreign key
     """
-    date = models.DateField
+    date = models.DateField('date', default=datetime.date.today())
     second_lection_exist = models.BooleanField(default=True)
     owner = models.ForeignKey(User)
 
@@ -83,7 +96,7 @@ class Mess(models.Model):
             the lection
     """
     day = models.ForeignKey(Day)
-    hour = models.TimeField
+    hour = models.TimeField('hour', default=datetime.time(9,0))
     first_lection = models.ForeignKey(Reader, related_name='first_lection_users')
 
     # NOTICE! If day.is_second_lection == False
