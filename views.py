@@ -33,3 +33,7 @@ class PrepareTableView(generic.FormView):
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         return super(PrepareTableView, self).dispatch(*args, **kwargs)
+
+
+class LoggedOutView(generic.TemplateView):
+    template_name = 'registration/logged_out.html'
