@@ -3,4 +3,4 @@
     <li><a href="{% url 'lister:prepare_table' %}">Przygotuj tabelę czytających</a></li>
 </ul>
 <br />
-<p>{{ user.username }} <a href="{% url 'logout' %}">Wyloguj się</a></p>
+<p>{{ user.username }} <a href="{% url 'auth:logout' %}">Wyloguj się</a></p>
