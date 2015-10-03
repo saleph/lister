@@ -1,0 +1,22 @@
+{% if readers_list %}
+    <table>
+        <tr>
+            <td>[godność]</td>
+            <td>[czytania]</td>
+            <td>[psalmy]</td>
+            <td>[modlitwy wiernych]</td>
+        </tr>
+        {% for reader in readers_list %}
+        <tr>
+            <td>{{ reader.name }}</td>
+            <td>{{ reader.wants_lection }}</td>
+            <td>{{ reader.wants_psalm }}</td>
+            <td>{{ reader.wants_believers_pray }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p>Nie dodałeś jeszcze żadnego czytającego.</p>
+{% endif %}
+<p><a href="{% url 'lister:add_readers' %}">Dodaj czytających</a></p>
+

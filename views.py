@@ -13,18 +13,26 @@ class IndexView(generic.TemplateView):
         return super(IndexView, self).dispatch(request, *args, **kwargs)
 
 
-class EditReadersView(generic.ListView):
-    template_name = 'lister/edit_readers.html'
+class ShowReadersView(generic.ListView):
+    model = Reader
+    template_name = 'lister/show_readers.html'
+    context_object_name = 'readers_list'
+    user = None
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
-        return super(EditReadersView, self).dispatch(request, *args, **kwargs)
+        self.get_user(request)
+        return super(ShowReadersView, self).dispatch(request, *args, **kwargs)
+
+    def get_user(self, request):
+        """Gets user from current request."""
+        self.user = request.user
 
     def get_queryset(self):
         """
         Returns the all readers, which owner is current user.
         """
-        return Reader.objects.filter()
+        return Reader.objects.filter(owner=self.user)
 
 
 class PrepareTableView(generic.FormView):
