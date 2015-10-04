@@ -1,0 +1,9 @@
+<h1>Szczegóły</h1>
+<h3>{{ reader.name }}</h3>
+<ul>
+    <li>Czytania: {{ reader.wants_lection }}</li>
+    <li>Psalmy: {{ reader.wants_psalm }}</li>
+    <li>Modlitwy wiernych: {{ reader.wants_believers_pray }}</li>
+</ul>
+<a href="{% url 'lister:delete_reader' reader.id %}">Usuń</a><br />
+<strong><a href="{% url 'lister:show_readers' %}">Wróć do listy</a></strong>

@@ -1,0 +1,4 @@
+<form action="" method="post">{% csrf_token %}
+    <p>Na pewno chcesz usunąć z listy: "{{ reader.name }}"?</p>
+    <input type="submit" value="Confirm" />
+</form>
