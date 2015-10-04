@@ -1,6 +1,7 @@
 from django.views import generic
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.core.urlresolvers import reverse_lazy
 
 from .models import Reader
 
@@ -40,8 +41,24 @@ class PrepareTableView(generic.FormView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
-        return super(PrepareTableView, self).dispatch(*args, **kwargs)
+        return super(PrepareTableView, self).dispatch(request, *args, **kwargs)
 
+
+class DeleteReaderView(generic.DeleteView):
+    model = Reader
+    success_url = reverse_lazy('lister:show_readers')
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(DeleteReaderView, self).dispatch(request, *args, **kwargs)
+
+class ReaderDetailView(generic.DetailView):
+    model = Reader
+    template_name = 'lister/reader_detail.html'
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(ReaderDetailView, self).dispatch(request, *args, **kwargs)
 
 class LoggedOutView(generic.TemplateView):
     template_name = 'registration/logged_out.html'
